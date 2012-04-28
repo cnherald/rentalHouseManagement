@@ -140,37 +140,10 @@
 	
 	
 	
-	//toggling Tenant's Activities Table
-	//$('#activityHrefId').toggle(function(){
-	//$('td.activityClass a').toggle(function() {
-	$('#tenantActivityHrefId').toggle(function(){
-		var tenantKey = $(this).data('tenant-key');
-		alert("you click activity");
-		$.ajax({
-			url:"showActivity?tenant_key=" + tenantKey,
-			type: 'GET',
-			dataType: 'json',
-			success: function(data_json){
-				$('#showTenantActivities').html(tenantActivityTable(data_json)).show();
-			}					
-		});
-	
-	},function(){
-			$('#showTenantActivities').hide();
-			return false;
-	});
+
 	
 	
-	
-	
-	//previous tenant activities hover description
-	$('.previousTenantActivityClass').mousemove(function(e){
-		var hovertext = $(this).attr('hovertext');
-		$('#PrvTenantActivityHoverDiv').text(hovertext).show();
-		$('#PrvTenantActivityHoverDiv').css('top',e.clientY+10).css('left',e.clientX+10);
-	}).mouseout(function(){
-		$('#PrvTenantActivityHoverDiv').hide();	
-	});
+
 	
 	
 	
