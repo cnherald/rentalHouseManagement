@@ -1,0 +1,85 @@
+.table, .table tr, .table td{
+border:1px solid #000;
+}
+
+#tenantHoverDiv{
+	display:none;
+	position:absolute;
+	font-size:14px;
+	background-color:#fff;
+	color:#404040;
+	border:1px solid #999;
+	padding:7px;
+}
+
+#curTenantActivityHoverDiv{
+	display:none;
+	position:absolute;
+	font-size:14px;
+	background-color:#fff;
+	color:#404040;
+	border:1px solid #999;
+	padding:7px;
+}
+
+#tenantActivityHoverDiv{
+	display:none;
+	position:absolute;
+	font-size:14px;
+	background-color:#fff;
+	color:#404040;
+	border:1px solid #999;
+	padding:7px;
+}
+
+#roomHoverDiv{
+	display:none;
+	position:absolute;
+	font-size:14px;
+	background-color:#fff;
+	color:#404040;
+	border:1px solid #999;
+	padding:7px;
+}
+
+#roomProfileEditorHover{
+	display:none;
+	position:absolute;
+	font-size:14px;
+	background-color:#fff;
+	color:#404040;
+	border:1px solid #999;
+	padding:7px;
+}
+
+
+#paymentHistoryHoverDiv{
+	display:none;
+	position:absolute;
+	font-size:14px;
+	background-color:#fff;
+	color:#404040;
+	border:1px solid #999;
+	padding:7px;
+}
+
+
+#tenantProfileEditorHoverDiv{
+	display:none;
+	position:absolute;
+	font-size:14px;
+	background-color:#fff;
+	color:#404040;
+	border:1px solid #999;
+	padding:7px;
+}
+
+#tenantProfileEditorHover{
+	display:none;
+	position:absolute;
+	font-size:14px;
+	background-color:#fff;
+	color:#404040;
+	border:1px solid #999;
+	padding:7px;
+}

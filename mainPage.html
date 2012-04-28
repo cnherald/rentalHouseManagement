@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Tenant Management System</title>
+		<link rel="stylesheet" type="text/css" href="http://yui.yahooapis.com/3.4.1/build/cssbase/cssbase-min.css">
+		<link rel="stylesheet" type="text/css" href="http://yui.yahooapis.com/3.4.1/build/cssreset/cssreset-min.css">
+		<link rel="stylesheet" type="text/css" href="http://yui.yahooapis.com/3.4.1/build/cssgrids/grids-min.css">
+		<link rel="stylesheet" type="text/css" href="/css/style.css">
+		<!--<link rel="stylesheet" type="text/css" href="/scripts/style.css" >-->
+		<style>
+			body {
+				margin: 0 auto;
+				width: 960px;
+			}
+		</style>
+	</head>
+
+	<body>
+		<h1>Tenant Management System</h1>
+		<div>
+			<a href="/tenants">Tenants</a>
+		
+			<a href="/rooms">Rooms</a>
+		
+	
+			
+			<h2>Current Payment Stuatus</h2>
+			<h2>Unpaid Tenants</h2>
+			<div>
+				<table class="table">
+					<thead>
+						<tr>
+							<th>Pending Tenant</th>
+							<th>Room Number</th>
+							<th>Start Date</th>
+							<th>Rent</th>
+							<th>Rate</th>
+							<th>Pay Period</th>
+							<th>Total PaidRent</th>
+							<th>Last PayDate</th>
+							<th>Expiry Date</th> 
+							<th>Unpaid Weeks</th>
+							<th>Unpaid Rent</th>
+							<th>Rent To Pay</th>
+							<th>Pay Now</th>
+						</tr>
+					</thead>
+					<tbody>
+					{% for tenant in pendingTenants %}
+						<tr>
+							<div id="tenantHoverDiv"></div>
+							<td class="tenantProfileClass" hovertext="click to get  {{ tenant.firstName }} {{ tenant.surname }}'s profile" >	
+								<a href="#" data-tenant-key="{{ tenant.key }}" data-tenant-state="pending">{{ tenant.firstName }} {{ tenant.surname }}</a>
+							</td>
+							<div id="roomHoverDiv"></div>	
+							<td class="roomNumberClass" hovertext="click to get room {{ tenant.room.roomNumber }} 's information"> 								
+								<a href="#" data-room-key="{{ tenant.room.key }}" data-tenant-state="pending">{{ tenant.room.roomNumber }}</a>
+							</td>
+							<td>{{ tenant.startDate }}</td>
+							<td>{{ tenant.getRent }}</td>
+							<td>{{ tenant.getRentRate }}
+							<td>{{ tenant.payPeriod }}</td>
+							<div id="paymentHistoryHoverDiv"></div>
+							<td class="paymentHistoryClass" hovertext="click to get {{ tenant.firstName }} {{ tenant.surname }}'s payment history"> 
+								<!--<a href="/paymentHistory?tenant_key={{ tenant.key}}">{{ tenant.getTotalPaidAmount }}</a>-->
+								<a href="#" data-tenant-key="{{ tenant.key }}" data-tenant-state="pending" >{{ tenant.getTotalPaidRent }}</a>
+							</td>							
+							<td>{{ tenant.getLastPayDate }}</td>
+							<td>{{ tenant.expiryDate }}</td>
+							<td>{{ tenant.getUnpaidWeeks }}</td>
+							<td>{{ tenant.getUnpaidRent }}</td>
+							<td>{{ tenant.getRentToPay }}</td>
+							<!--<td> <a href="/paynow">{{ tenant.getUnpaidRent }} </a></td>-->
+
+							<td class="payNow">
+								<!--<button data-tenant-key="{{ tenant.key }}" data-tenant-firstName="{{tenant.firstName}}" data-tenant-surname="{{tenant.surname}}">Pay Now</button>-->
+								<!--<a href="/paynow?tenant_key={{ tenant.key }}"> Pay Now </a>	-->  
+								<a id="payNowHrefId" href="#" data-tenant-key={{ tenant.key }} data-tenant-firstname={{ tenant.firstName }} data-tenant-surname={{tenant.surname}} >Pay Now</a>
+							</td>
+						</tr>
+					{% endfor %}
+					</tbody>
+				</table>
+			</div>
+			
+			<div id="pendingTenantProfile"></div></br>
+			
+		<div >
+			<div id="payNowId"></div>
+			
+			
+			<h2>Paid Tenants</h2>
+			<table>
+				<thead>
+					<tr>
+						<th>Cleared Tenant</th>
+						<th>Room Number</th>
+						<td>Start Date</td>
+						<th>Rent</th>
+						<th>Rate</th>
+						<th>Pay Period</th>
+						<th>Total PaidRent</th>
+						<th>Last PayDate</th>
+						<th>Expiry Date</th>
+						<th>Pay Now</th>						
+					</tr>
+				</thead>
+				<tbody>
+				{% for tenant in clearedTenants %}
+					<tr>
+						<!--<td> <a href="/tenantProfile?tenant_key={{ tenant.key }}">{{ tenant.firstName }} {{ tenant.surname }}</a> </td>	-->
+						
+						<div id="tenantHoverDiv"></div>
+						<td class="tenantProfileClass" hovertext="click to get  {{ tenant.firstName }} {{ tenant.surname }}'s profile" >	
+							<a href="#" data-tenant-key="{{ tenant.key }}" data-tenant-state="cleared">{{ tenant.firstName }} {{ tenant.surname }}</a>
+						</td>		
+						<div id="roomHoverDiv"></div>
+						<td class="roomNumberClass" hovertext="click to get room {{ tenant.room.roomNumber }} 's information"> 												
+							<a href="#" data-room-key="{{ tenant.room.key }}" data-tenant-state="cleared">{{ tenant.room.roomNumber }}</a>
+						</td>
+						<td>{{ tenant.startDate }}</td>						
+						<td>{{ tenant.getRent }}</td>
+						<td>{{ tenant.getRentRate }}
+						<td>{{ tenant.payPeriod }}</td>
+						<div id="paymentHistoryHoverDiv"></div>
+						<td class="paymentHistoryClass" hovertext="click to get {{ tenant.firstName }} {{ tenant.surname }}'s payment history"> 
+							<a href="#" data-tenant-key="{{ tenant.key }}" data-tenant-state="cleared" >{{ tenant.getTotalPaidRent }}</a>
+						</td>
+						<td>{{ tenant.getLastPayDate }}</td>
+						<td>{{ tenant.expiryDate }}</td>
+						<td class="payNow">
+							<!--<button data-tenant-key="{{ tenant.key }}">Pay Now</button>-->
+							<a id = "payNowId" href="#" data-tenant-key={{ tenant.key }} data-tenant-firstname={{ tenant.firstName }} data-tenant-surname={{tenant.surname}} >Pay Now</a>
+						</td>						
+					</tr>
+				{% endfor %}
+				</tbody>
+			</table>
+		</div>
+		<div id="clearedTenantProfile"></div>
+		<a href="/{{previous_url}}">BACK</a>
+		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.0/jquery.min.js"></script>
+		<script type="text/javascript" src="/scripts/app.js"></script>			
+	</body>
+</html>
