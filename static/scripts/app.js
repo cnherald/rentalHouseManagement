@@ -4,6 +4,27 @@
 
 $(function () {
 
+//show tenants table
+$('#tenantHrefId').click(function(){
+	$.ajax({
+		url:"tenant",
+		type:'GET',
+		dataType:'json',
+		success:function(data_json){
+		
+		}
+	
+	
+	
+	});
+
+
+
+
+
+});
+
+
 //check in a tenant
 	$('#checkinHrefId').click(function(){
 		var tenantKey = $(this).data('tenant-key');
@@ -930,7 +951,7 @@ $(function () {
 			);
 		});
 		$('body').append(jqTable);
-		$('body').append('<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.0/jquery.min.js"></script>');
+		//$('body').append('<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.0/jquery.min.js"></script>');
 		$('body').append('<script type="text/javascript" src="/scripts/app1.js"></script>');
 		return jqTable;
 		
@@ -996,7 +1017,7 @@ $(function () {
 
 		+ '</form>');
 		$('body').append(jqForm);
-		$('body').append('<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.0/jquery.min.js"></script>');
+		//$('body').append('<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.0/jquery.min.js"></script>');
 		$('body').append('<script type="text/javascript" src="/scripts/app.js"></script>');
 		return jqForm;
 	}
