@@ -105,7 +105,7 @@ $('#tenantHrefId').click(function(){
 	$('#tenantDeletionHrefId').click(function(evt){
 	//$('td.deleteTenant button').click(function (evt) {
 		var tenantKey = $(this).data('tenant-key');
-		alert(tenantKey);
+		//alert(tenantKey);
 		var r = confirm("Warnning: Do you want to delete this tenant?");
 		if (r) {
 			$.ajax({

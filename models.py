@@ -351,9 +351,9 @@ class Tenant(db.Model):
                     
     def removeActivity(self):
         allActivities = db.GqlQuery("SELECT * "
-                                    "FROM Activity")
+                                    "FROM Activity ORDER BY activityDate")
         for activity in allActivities:
-            if self.key() in activity.key().name():
+            if str(self.key()) in activity.key().name():
                 activity.delete() 
                 
 

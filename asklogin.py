@@ -216,18 +216,19 @@ class TenantDeletionHandler(webapp.RequestHandler):
         #tenantToDelete = Tenant.get_by_key_name(tenant_key, None)
         tenantToDelete = Tenant.get(tenant_key)
         if tenantToDelete.room:
-            response = {'tenanIsNotCheckoutNotice':'Please check out the tenant before delete the tenant!'}
+            response = {'tenanIsNotCheckoutNotice':'Sorry you can not delete this tenant, please check out the tenant!'}
             jsonResponse = simplejson.dumps(response)
             return self.response.out.write(jsonResponse)
         else:
             tenantToDelete.removeActivity()
-            tenantToDelete.unRegisterRoom()
+            #tenantToDelete.unRegisterRoom()
+            db.delete(tenantToDelete)
             response = {'tenantDeletionSuccessNotice':'You have deleted the tenant successfully'}
             jsonResponse = simplejson.dumps(response)
             return self.response.out.write(jsonResponse)
         
-        tenantToDelete.removeActivity()
-        tenantToDelete.unRegisterRoom()
+        #tenantToDelete.removeActivity()
+        #tenantToDelete.unRegisterRoom()
         
 
 class RoomDeletionHandler(webapp.RequestHandler):
