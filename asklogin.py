@@ -33,7 +33,23 @@ class MainPage(webapp.RequestHandler):
         path = os.path.join(os.path.dirname(__file__), 'mainPage.html')
         template_values = {'pendingTenants':pendingTenants, 'clearedTenants':clearedTenants,'previous_url':previous_url}
         self.response.out.write(template.render(path, template_values))
-        
+
+class Bootstrapmainpage(webapp.RequestHandler):
+    def get(self):
+        previous_url = self.request.get('previous_url')
+        tenants = Tenant().getCurrentTenants()              
+        clearedTenants = []
+        pendingTenants = []
+        for tenant in tenants:
+            if tenant.room: #displays only checked in tenant                 
+                if tenant.paymentIsClear():
+                    clearedTenants.append(tenant)                
+                else:
+                    pendingTenants.append(tenant)
+        path = os.path.join(os.path.dirname(__file__),"bootstrapmainpage.html")
+        template_values = {'pendingTenants':pendingTenants, 'clearedTenants':clearedTenants,'previous_url':previous_url}
+        self.response.out.write(template.render(path, template_values))
+       
 class TenantHandler(webapp.RequestHandler):
     roomNotAvailable = False
     def get(self):
@@ -409,7 +425,8 @@ class ShowActivityHandler(webapp.RequestHandler):
 
 
        
-application = webapp.WSGIApplication([('/', MainPage),
+application = webapp.WSGIApplication([#('/', MainPage),
+                                      ('/', Bootstrapmainpage),
                                       ('/paynow',PayRentHandler),
                                       #('/tenantProfile',TenantProfileHandler),
                                       ('/tenantProfileDataEditor',TenantProfileDataEditorHandler),
