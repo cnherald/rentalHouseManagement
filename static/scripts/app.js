@@ -537,23 +537,26 @@ $('#tenantHrefId').click(function(){
 	
 	
 	//toggling the tenant's payment history
-	$('td.paymentHistoryClass a').toggle(function() { 
-		var tenantKey = $(this).data('tenant-key');
-		var tenantState =$(this).data('tenant-state');
-		$.ajax({
-			url:"paymentHistory?tenant_key=" + tenantKey,
-			type:'GET',
-			dataType:'json',// this is important in order to secure the returned data type!!
-			success: function(data_json){
-				if(tenantState == "pending") { 
-						$('#pendingTenantProfile').html(paymentHistoryTable(data_json)).show();
-						//$('#pendingTenantProfile').html(jqTable).show();					
-				} else if (tenantState == "cleared") {
-						$('#clearedTenantProfile').html(paymentHistoryTable(data_json)).show();
-			
-				}
-			}				
-		});	
+	$('td.paymentHistoryClass a').toggle(function() {
+		var totalPaidRent= $(this).data('totalpaidrent');
+		if(!(totalPaidRent == 0)){
+			var tenantKey = $(this).data('tenant-key');
+			var tenantState = $(this).data('tenant-state');
+			$.ajax({
+				url:"paymentHistory?tenant_key=" + tenantKey,
+				type:'GET',
+				dataType:'json',// this is important in order to secure the returned data type!!
+				success: function(data_json){
+					if(tenantState == "pending") { 
+							$('#pendingTenantProfile').html(paymentHistoryTable(data_json)).show();
+							//$('#pendingTenantProfile').html(jqTable).show();					
+					} else if (tenantState == "cleared") {
+							$('#clearedTenantProfile').html(paymentHistoryTable(data_json)).show();
+				
+					}
+				}				
+			});	
+		}
 	},function() {
 		$('#pendingTenantProfile').hide();
 		$('#clearedTenantProfile').hide();
@@ -711,29 +714,19 @@ $('#tenantHrefId').click(function(){
 	
 	
 	
-	//$('td.payNow a').click(function(evt) {
+	//$('td.payNowClass a').click(function(evt) { //works
 	//$('#payNowHrefId').click(function(evt) {
-	$('#payNowHrefId').bind("click", (function() {
+	//$('#payNowHrefId').toggle(function() {
+	//$('td.payNowClass a').toggle(function() {
+	//$('td.payNowClass a').bind("toggle",(function() {//not working
+	$('#payNowHrefId').bind("click", (function() { //works 
 	//alert("it workssss");
-	
-	//$('td.deleteTenant button').click(function (evt) {
+
 		var tenantKey = $(this).data('tenant-key');
 		var firstName = $(this).data('tenant-firstname');
 		var surname = $(this).data('tenant-surname');
 		$('#pendingTenantProfile').html(payNowForm(tenantKey,firstName,surname)).show();
-		// $.ajax({
-			// url:"paynow?tenant_key=" + tenantKey,
-			// type:'GET',
-			// dataType:'json',
-			////success: function(html) {
-				////$('#pendingTenantProfile').append(html);//works						
-			////}						
-			// success: function(data_json){
-				// alert("it is here");
-				// $('#pendingTenantProfile').html(payNowForm(tenantKey,firstName,surname,data_json)).show();
-			// }
-		// });
-		// return false;
+
 	}));
 
 	//validate payNow form
@@ -1193,7 +1186,7 @@ $('#tenantHrefId').click(function(){
 	//function payNowForm(tenantKey,tenant_data){
 	function payNowForm(tenantKey,firstName,surname) {
 		
-		var jqForm = $('<form id="payNowForm" onsubmit="return false;"></form>');
+		var jqForm = $('<form class="well" id="payNowForm" onsubmit="return false;"></form>');
 		//$.each(tenant_data,function(item){
 			jqForm.append(
 				
@@ -1298,7 +1291,7 @@ $('#tenantHrefId').click(function(){
 	
 	
 	function paymentHistoryTable(data_json){
-		var jqTable = $('<label>Payment History</label><table><thead><tr><th>Payment Number</th><th>Pay Date</th><th>Pay Amount</th></tr></thead><tbody></tbody></table>');
+		var jqTable = $('<label>Payment History</label><table class="table table-bordered"><thead><tr><th>Payment Number</th><th>Pay Date</th><th>Pay Amount</th></tr></thead><tbody></tbody></table>');
 		var jqBody = jqTable.find('tbody');	
 		$.each(data_json,function(item){
 			
