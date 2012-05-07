@@ -4,7 +4,15 @@
 
 $(function () {
 
-$('#myModal').modal('show')
+$('#myModal').modal({show:false});
+
+
+$('#payNowBtnId1').popover(); 
+$('#payNowBtnId2').popover(); 
+$('#someOtherId').popover(); 
+$('#totalPaidRentHrefId1').popover();
+$('#totalPaidRentHrefId2').popover();  
+
 
 //show tenants table
 $('#tenantHrefId').click(function(){
@@ -540,6 +548,7 @@ $('#tenantHrefId').click(function(){
 	
 	//toggling the tenant's payment history
 	$('td.paymentHistoryClass a').toggle(function() {
+	
 		var totalPaidRent= $(this).data('totalpaidrent');
 		if(!(totalPaidRent == 0)){
 			var tenantKey = $(this).data('tenant-key');
@@ -717,11 +726,11 @@ $('#tenantHrefId').click(function(){
 	
 	
 	//$('td.payNowClass a').click(function(evt) { //works
-	//$('#payNowHrefId').click(function(evt) {
-	//$('#payNowHrefId').toggle(function() {
+	//$('#payNowBtnId1').click(function(evt) {
+	//$('#payNowBtnId1').toggle(function() {
 	//$('td.payNowClass a').toggle(function() {
 	//$('td.payNowClass a').bind("toggle",(function() {//not working
-	$('#payNowHrefId').bind("click", (function() { //works 
+	$('#payNowBtnId1').bind("click", (function() { //works 
 	//alert("it workssss");
 
 		var tenantKey = $(this).data('tenant-key');
@@ -1263,7 +1272,7 @@ $('#tenantHrefId').click(function(){
 				+ '</div>'
 				//+ '<div><a href="/paynow">Pay Now</a></div>'
 				// + '<div class=payNowClass>'
-				// + '<a id = "payNowHrefId" href="#" data-tenant-key='
+				// + '<a id = "payNowBtnId1" href="#" data-tenant-key='
 				// + tenantKey + ' data-tenant-firstname='
 				// + data_json[item].firstName + ' data-tenant-surname='
 				// + data_json[item].surname + ' >Pay Now</a>'

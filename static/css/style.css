@@ -45,15 +45,7 @@ border:1px solid #000;
 }
 
 
-#paymentHistoryHoverDiv{
-	display:none;
-	position:absolute;
-	font-size:14px;
-	background-color:#fff;
-	color:#404040;
-	border:1px solid #999;
-	padding:7px;
-}
+
 
 
 #tenantProfileEditorHoverDiv{
