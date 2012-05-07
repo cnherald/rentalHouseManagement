@@ -131,20 +131,22 @@
 						<tbody>
 						{% for tenant in pendingTenants %}
 							<tr>
-								<div id="tenantHoverDiv"></div>
+								<!--<div id="tenantHoverDiv"></div>-->
 								<td class="tenantProfileClass" hovertext="click to get  {{ tenant.firstName }} {{ tenant.surname }}'s profile" >	
-									<a href="#" data-tenant-key="{{ tenant.key }}" data-tenant-state="pending">{{ tenant.firstName }} {{ tenant.surname }}</a>
+									<!--<a href="#" data-tenant-key="{{ tenant.key }}" data-tenant-state="pending">{{ tenant.firstName }} {{ tenant.surname }}</a>-->
+									<a href="#" id="tenantNameHrefId1" rel="popover" data-content="click to get {{ tenant.firstName }} {{ tenant.surname }}'s profile" data-original-title="Remainder:" data-tenant-key="{{ tenant.key }}" data-tenant-state="pending">{{ tenant.firstName }} {{ tenant.surname }}</a>
 								</td>
-								<div id="roomHoverDiv"></div>	
+								<!--<div id="roomHoverDiv"></div>-->
 								<td class="roomNumberClass" hovertext="click to get room {{ tenant.room.roomNumber }} 's information"> 								
-									<a href="#" data-room-key="{{ tenant.room.key }}" data-tenant-state="pending">{{ tenant.room.roomNumber }}</a>
+									<!--<a href="#" data-room-key="{{ tenant.room.key }}" data-tenant-state="pending">{{ tenant.room.roomNumber }}</a>-->
+									<a href="#" id="roomNumberHrefId1" rel="popover" data-content="click to get room {{ tenant.room.roomNumber }} 's information" data-original-title="Remainder:" data-room-key="{{ tenant.room.key }}" data-tenant-state="pending">{{ tenant.room.roomNumber }}</a>
 								</td>
 								<td>{{ tenant.startDate }}</td>
 								<td>{{ tenant.getRent }}</td>
 								<td>{{ tenant.getRentRate }}
 								<td>{{ tenant.payPeriod }}</td>
-								<div id="paymentHistoryHoverDiv"></div>
-								<td class="paymentHistoryClass" hovertext="click to get {{ tenant.firstName }} {{ tenant.surname }}'s payment history"> 
+								<!--<div id="paymentHistoryHoverDiv"></div>-->
+								<td class="paymentHistoryClass"> 
 									<!--<a href="/paymentHistory?tenant_key={{ tenant.key}}">{{ tenant.getTotalPaidAmount }}</a>-->
 									
 									<!--<a href="#" data-tenant-key="{{ tenant.key }}" data-tenant-state="pending" data-totalpaidrent="{{ tenant.getTotalPaidRent }}">{{ tenant.getTotalPaidRent }}</a>-->
@@ -162,7 +164,7 @@
 									<!--<a href="/paynow?tenant_key={{ tenant.key }}"> Pay Now </a>	-->  
 									<!--<a id="payNowHrefId" href="#" data-tenant-key={{ tenant.key }} data-tenant-firstname={{ tenant.firstName }} data-tenant-surname={{tenant.surname}} >Pay Now</a>-->
 									
-									<a href="#" id="payNowBtnId1" class="btn btn-primary" rel="popover" data-content="click to pay the rent right now" data-original-title="Remainder:" data-tenant-key={{ tenant.key }} data-tenant-firstname={{ tenant.firstName }} data-tenant-surname={{tenant.surname}} >Pay Now</a> 
+									<a href="#" id="payNowBtnId1" rel="popover" data-content="click to pay the rent right now" data-original-title="Remainder:" data-tenant-key={{ tenant.key }} data-tenant-firstname={{ tenant.firstName }} data-tenant-surname={{tenant.surname}} >Pay Now</a> 
 							
 								</td>
 							</tr>
@@ -196,13 +198,16 @@
 							<tr>
 								<!--<td> <a href="/tenantProfile?tenant_key={{ tenant.key }}">{{ tenant.firstName }} {{ tenant.surname }}</a> </td>	-->
 								
-								<div id="tenantHoverDiv"></div>
-								<td class="tenantProfileClass" hovertext="click to get  {{ tenant.firstName }} {{ tenant.surname }}'s profile" >	
-									<a href="#" data-tenant-key="{{ tenant.key }}" data-tenant-state="cleared">{{ tenant.firstName }} {{ tenant.surname }}</a>
+								<!--<div id="tenantHoverDiv"></div>-->
+								<td class="tenantProfileClass" >	
+									<!--<a href="#" data-tenant-key="{{ tenant.key }}" data-tenant-state="cleared">{{ tenant.firstName }} {{ tenant.surname }}</a>-->
+									<a href="#" id="tenantNameHrefId2" rel="popover" data-content="click to get {{ tenant.firstName }} {{ tenant.surname }}'s profile" data-original-title="Remainder:" data-tenant-key="{{ tenant.key }}" data-tenant-state="cleared">{{ tenant.firstName }} {{ tenant.surname }}</a>
 								</td>		
-								<div id="roomHoverDiv"></div>
-								<td class="roomNumberClass" hovertext="click to get room {{ tenant.room.roomNumber }} 's information"> 												
-									<a href="#" data-room-key="{{ tenant.room.key }}" data-tenant-state="cleared">{{ tenant.room.roomNumber }}</a>
+								<!--<div id="roomHoverDiv"></div>-->
+								<td class="roomNumberClass" > 												
+									<!--<a href="#" data-room-key="{{ tenant.room.key }}" data-tenant-state="cleared">{{ tenant.room.roomNumber }}</a>-->
+									<a href="#" id="roomNumberHrefId2" rel="popover" data-content="click to get room {{ tenant.room.roomNumber }} 's information" data-original-title="Remainder:" data-room-key="{{ tenant.room.key }}" data-tenant-state="cleared">{{ tenant.room.roomNumber }}</a>
+									
 								</td>
 								<td>{{ tenant.startDate }}</td>						
 								<td>{{ tenant.getRent }}</td>

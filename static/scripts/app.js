@@ -12,6 +12,10 @@ $('#payNowBtnId2').popover();
 $('#someOtherId').popover(); 
 $('#totalPaidRentHrefId1').popover();
 $('#totalPaidRentHrefId2').popover();  
+$('#roomNumberHrefId1').popover(); 
+$('#roomNumberHrefId2').popover(); 
+$('#tenantNameHrefId1').popover();
+$('#tenantNameHrefId2').popover(); 
 
 
 //show tenants table
@@ -22,15 +26,8 @@ $('#tenantHrefId').click(function(){
 		dataType:'json',
 		success:function(data_json){
 		
-		}
-	
-	
-	
+		}			
 	});
-
-
-
-
 
 });
 
@@ -728,17 +725,22 @@ $('#tenantHrefId').click(function(){
 	//$('td.payNowClass a').click(function(evt) { //works
 	//$('#payNowBtnId1').click(function(evt) {
 	//$('#payNowBtnId1').toggle(function() {
-	//$('td.payNowClass a').toggle(function() {
+	$('td.payNowClass a').toggle(function() {
 	//$('td.payNowClass a').bind("toggle",(function() {//not working
-	$('#payNowBtnId1').bind("click", (function() { //works 
+	//$('#payNowBtnId1').bind("click", (function() { //works 
 	//alert("it workssss");
 
 		var tenantKey = $(this).data('tenant-key');
 		var firstName = $(this).data('tenant-firstname');
 		var surname = $(this).data('tenant-surname');
 		$('#pendingTenantProfile').html(payNowForm(tenantKey,firstName,surname)).show();
+		//$('#pendingTenantProfile').html(paymentHistoryTable(data_json)).show();
 
-	}));
+	},function() {
+		$('#pendingTenantProfile').hide();
+		//$('#clearedTenantProfile').hide();
+		return false;
+	});
 
 	//validate payNow form
 	$('.error').hide();
@@ -763,12 +765,33 @@ $('#tenantHrefId').click(function(){
 	
 	
 	
-	$('#payNowForm').submit(function(){
+	//$('#payNowForm').submit(function(){
+	$('#pendingTenantProfile').on('click','#payNowSubmit_btn',function(evt){	//attaching "change" event to dynamic html elements	
 	//$('#payNowSubmit_btn').click(function() {
 	//$('payNowName').submit(function() {
 		//$('#payNowSubmit_btn').attr('disabled', true);
 		var values = $('#payNowForm').serializeArray(),
 		
+		data = {};
+		$.each(values, function(index, item) {
+			data[item.name] = item.value;
+		}); 
+		var dataStringJson = JSON.stringify(data);
+		$.ajax({
+			url:'/paynow',
+			type:'POST',
+			data: dataStringJson,
+			success:function(resp){
+				alert(resp.payNowSuccessNotice);
+				window.location.replace("../");				
+			}
+		});				
+		return false;
+	});	
+	
+	
+	$('#clearedTenantProfile').on('click','#payNowSubmit_btn',function(evt){	//attaching "change" event to dynamic html elements	
+		var values = $('#payNowForm').serializeArray(),		
 		data = {};
 		$.each(values, function(index, item) {
 			data[item.name] = item.value;
@@ -857,7 +880,7 @@ $('#tenantHrefId').click(function(){
 	 */
 	function tenantInfoTable(data_json) {		
 		//alert("data para:" + data_json);//why display "[obj Object]"?
-		var jqTable = $('<table><thead><tr><th>First Name</th><th>Surname</th><th>Gender</th><th>Age</th><th>Phone Number</th><th>Email</th><th>Contact Name</th><th>Contact Phone Number</th><th>Register Date</th></tr></thead><tbody></tbody></table>');
+		var jqTable = $('<table class="table table-bordered"><thead><tr><th>First Name</th><th>Surname</th><th>Gender</th><th>Age</th><th>Phone Number</th><th>Email</th><th>Contact Name</th><th>Contact Phone Number</th><th>Register Date</th></tr></thead><tbody></tbody></table>');
 		var jqBody = jqTable.find('tbody');	
 
 		// for (var i = 0; i < data_json.length; i++) {		
@@ -886,7 +909,7 @@ $('#tenantHrefId').click(function(){
 	
 	
 	function tenantProfileEditorTable(tenantKey,data_json) {
-		var jqTable = $('<form id="tenantProfileForm" onsubmit="return false;"><table><thead><tr><th>First Name</th><th>Surname</th><th>Gender</th><th>Age</th><th>Phone Number</th><th>Email</th><th>Contact Name</th><th>Contact Phone Number</th><th>Register Date</th><th>Edit</th></tr></thead><tbody></tbody></table></form>');
+		var jqTable = $('<form id="tenantProfileForm" onsubmit="return false;"><table class="table table-bordered"><thead><tr><th>First Name</th><th>Surname</th><th>Gender</th><th>Age</th><th>Phone Number</th><th>Email</th><th>Contact Name</th><th>Contact Phone Number</th><th>Register Date</th><th>Edit</th></tr></thead><tbody></tbody></table></form>');
 		var jqBody = jqTable.find('tbody');	
 		$.each(data_json,function(item){			
 			jqBody.append(
@@ -914,7 +937,7 @@ $('#tenantHrefId').click(function(){
 	
 	function roomProfileTable(data_json) {		
 		//alert("data para:" + data_json);//why display "[obj Object]"?
-		var jqTable = $('<table><thead><tr><th>Number</th><th>Size</th><th>Single Rent</th><th>Double Rent</th><th>Actual Rent</th></tr></thead><tbody></tbody></table>');
+		var jqTable = $('<table class="table table-bordered"><thead><tr><th>Number</th><th>Size</th><th>Single Rent</th><th>Double Rent</th><th>Actual Rent</th></tr></thead><tbody></tbody></table>');
 		var jqBody = jqTable.find('tbody');	
 
 		// for (var i = 0; i < data_json.length; i++) {		
@@ -938,7 +961,7 @@ $('#tenantHrefId').click(function(){
 	
 	
 	function roomProfileEditorTable(roomKey,data_json) {
-		var jqTable = $('<form id="roomProfileForm" onsubmit="return false;"><table><thead><tr><th>Number</th><th>Size</th><th>Single Rent</th><th>Double Rent</th><th>Actual Rent</th><th>Edit</th><tr></thead><tbody></tbody></table></form>');
+		var jqTable = $('<form id="roomProfileForm" onsubmit="return false;"><table class="table table-bordered"><thead><tr><th>Number</th><th>Size</th><th>Single Rent</th><th>Double Rent</th><th>Actual Rent</th><th>Edit</th><tr></thead><tbody></tbody></table></form>');
 		var jqBody = jqTable.find('tbody');
 		$.each(data_json,function(item){
 			jqBody.append(
@@ -1227,9 +1250,9 @@ $('#tenantHrefId').click(function(){
 				+ '</div>'
 				);
 		//});
-		$('body').append(jqForm);
+		//$('body').append(jqForm);
 		//$('body').append('<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.0/jquery.min.js"></script>');
-		$('body').append('<script type="text/javascript" src="/scripts/app.js"></script>');
+		//$('body').append('<script type="text/javascript" src="/scripts/app.js"></script>');
 		return jqForm;
 	}
 	
