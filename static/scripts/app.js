@@ -4,6 +4,8 @@
 
 $(function () {
 
+$('#myModal').modal('show')
+
 //show tenants table
 $('#tenantHrefId').click(function(){
 	$.ajax({
