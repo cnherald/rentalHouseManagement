@@ -719,9 +719,6 @@ $('#tenantHrefId').click(function(){
 
 	
 	
-	
-	
-	
 	//$('td.payNowClass a').click(function(evt) { //works
 	//$('#payNowBtnId1').click(function(evt) {
 	//$('#payNowBtnId1').toggle(function() {
@@ -733,12 +730,16 @@ $('#tenantHrefId').click(function(){
 		var tenantKey = $(this).data('tenant-key');
 		var firstName = $(this).data('tenant-firstname');
 		var surname = $(this).data('tenant-surname');
+		var tenantState = $(this).data('tenant-state');
+		if(tenantState == "pending") { 
 		$('#pendingTenantProfile').html(payNowForm(tenantKey,firstName,surname)).show();
-		//$('#pendingTenantProfile').html(paymentHistoryTable(data_json)).show();
+		} else {
+		$('#clearedTenantProfile').html(payNowForm(tenantKey,firstName,surname)).show();
+		}
 
 	},function() {
 		$('#pendingTenantProfile').hide();
-		//$('#clearedTenantProfile').hide();
+		$('#clearedTenantProfile').hide();
 		return false;
 	});
 
