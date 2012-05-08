@@ -1,95 +1,147 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 	<head>
 		<meta charset="utf-8">
-		<title>Tenant Configuration</title>
-		<link rel="stylesheet" type="text/css" href="http://yui.yahooapis.com/3.4.1/build/cssbase/cssbase-min.css">
-		<link rel="stylesheet" type="text/css" href="http://yui.yahooapis.com/3.4.1/build/cssreset/cssreset-min.css">
-		<link rel="stylesheet" type="text/css" href="http://yui.yahooapis.com/3.4.1/build/cssgrids/grids-min.css">
-		<link rel="stylesheet" type="text/css" href="/css/style.css">
-		<style>
-			body {
-				margin: 0 auto;
-				width: 960px;
-			}
-		</style>
-	</head>
-	<body>		 
-			<h1>Tenants Renting Status</h1>
-			<div>
-				<h2>Current Tenant</h2>
-				<table>
-					<thead>
-						<tr>
-							<th>Name</th>
-							<th>Room Number</th>
-							<th>Rent</th>
-							<th>StartDate</th>
-							<th>PayPeriod</th>
-							<th>ExpiryDate</th>
-							<th>Check</th>
-							
-							<th>Delete</th>
-							<th>Activities</th>
-							
-						</tr>
-					</thead>
-					<tbody>
-					
-					{% for tenant in tenants %}
-						<tr>
-							<div id="tenantHoverDiv"></div>
-							<td class="tenantNameEditorClass" hovertext="click to Edit {{ tenant.firstName }} {{ tenant.surname }}'s profile" >	
-								<a href="#" data-tenant-key="{{ tenant.key}}" >{{ tenant.firstName }} {{ tenant.surname }}</a>
-							</td>	
-							<div id="roomHoverDiv"></div>	
-							<td class="roomNumberClass" hovertext="click to get room {{ tenant.room.roomNumber }} 's information"> 								
-								<a href="#" data-room-key="{{ tenant.room.key }}">{{ tenant.room.roomNumber }}</a>
-							</td>			
-							<td>{{ tenant.getRent }}</td>
-							<td>{{ tenant.startDate }}</td>
-							<td>{{ tenant.payPeriod }}</td>
-							<td>{{ tenant.expiryDate }}</td>
-							<td>
-								{% if tenant.room %}
-								<!--<a href="/checkout?tenant_key={{ tenant.key }}"> OUT </a> -->
-								<a id="checkoutHrefId" href="#" data-tenant-key="{{ tenant.key }}">OUT</a>
-								{% else %}{% ifequal tenant.room None %}
-								{% if roomNotAvailable %}
-								IN
-								{% else %}
-								 
-								<!--<a href="/checkin?tenant_key={{ tenant.key }}"> IN </a>-->
-								<a id="checkinHrefId" href="#" data-tenant-key="{{ tenant.key}}">IN</a>
-							 
-								{% endif %}
-								{% endifequal %}
-								{% endif %}
-							</td>
-							<td class="deleteTenant">
-								<!--<button data-tenant-key="{{ tenant.key}}">Delete</button>-->
-								<!--<button data-tenant-key="{{ tenant.key.name }}">Delete</button>-->
-								<a id="tenantDeletionHrefId" href="#" data-tenant-key="{{ tenant.key }}">Delete</a>
-							</td >
-							<div id="tenantActivityHoverDiv"></div>
-							<td class="tenantActivityClass" hovertext="click to show {{ tenant.firstName }} {{ tenant.surname }}'s activities">								
-								<!--<a href="/showActivity?tenant_key={{ tenant.key.name }}"> Activities</a>-->
-								<a id="tenantActivityHrefId" href="#" data-tenant-key="{{ tenant.key}}">Activities</a>								
-							</td>
-						</tr>
-					{% endfor %}
-					</tbody>
-				</table>
-			</div>
+		<title>Tenants</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta name="description" content="">
+		<meta name="author" content="">
 
+		<!-- Le styles -->
+		<link href="/css/bootstrap.css" rel="stylesheet">
+		<style type="text/css">
+		  body {
+			padding-top: 60px;
+			padding-bottom: 40px;
+		  }
+		</style>
+		<link href="/css/bootstrap-responsive.css" rel="stylesheet">
+		
+
+		<!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
+		<!--[if lt IE 9]>
+		  <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+		<![endif]-->
+
+		<!-- Le fav and touch icons -->
+		<link rel="shortcut icon" href="ico/favicon.ico">
+		<link rel="apple-touch-icon-precomposed" sizes="144x144" href="ico/apple-touch-icon-144-precomposed.png">
+		<link rel="apple-touch-icon-precomposed" sizes="114x114" href="ico/apple-touch-icon-114-precomposed.png">
+		<link rel="apple-touch-icon-precomposed" sizes="72x72" href="ico/apple-touch-icon-72-precomposed.png">
+		<link rel="apple-touch-icon-precomposed" href="ico/apple-touch-icon-57-precomposed.png">
+		<!--<link rel="stylesheet" type="text/css" href="/css/style.css">-->
+		
+
+	</head>
+	<body>
+
+		<div class="navbar navbar-fixed-top">
+		  <div class="navbar-inner">
+			<div class="container">
+			  <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			  </a>
+			  <a class="brand" href="#">Tenants Management</a>
+			  <div class="nav-collapse">
+				<ul class="nav">
+				  <li class="active"><a href="/"><i class="icon-home icon-white"></i> Home</a></li>
+				  <li><a href="rooms">Rooms</a></li>
+				  <li><a href="#">Something Else</a></li>
+				  
+				</ul>
+			  </div><!--/.nav-collapse -->
+			</div>
+		  </div>
+		</div>	
+		
+		<div class="container">
+			
+			<div class="row">			
+				<div class="span12">
+					<h2>Current Tenants</h2>
+					<div>				
+						<table class="table table-bordered">
+							<thead>
+								<tr>
+									<th>Name</th>
+									<th>Room Number</th>
+									<th>Rent</th>
+									<th>StartDate</th>
+									<th>PayPeriod</th>
+									<th>ExpiryDate</th>
+									<th>Check</th>				
+									<th>Delete</th>
+									<th>Activities</th>
+									
+								</tr>
+							</thead>
+							<tbody>
+							
+							{% for tenant in tenants %}
+								<tr>
+									<!--<div id="tenantHoverDiv"></div>-->
+									<td class="tenantNameEditorClass">	
+										<!--<a href="#" data-tenant-key="{{ tenant.key}}" >{{ tenant.firstName }} {{ tenant.surname }}</a>-->
+										<a href="#" id="tenantNameHrefId1" rel="popover" data-content="click to Edit {{ tenant.firstName }} {{ tenant.surname }}'s profile" data-original-title="Remainder:" data-tenant-key="{{ tenant.key }}" >{{ tenant.firstName }} {{ tenant.surname }}</a>
+									</td>									
+									<td class="roomNumberClass" > 																
+										<a href="#" id="roomNumberHrefId1" rel="popover" data-content="click to get room {{ tenant.room.roomNumber }} 's information" data-original-title="Remainder:" data-room-key="{{ tenant.room.key }}">{{ tenant.room.roomNumber }}</a>
+									</td>			
+									<td>{{ tenant.getRent }}</td>
+									<td>{{ tenant.startDate }}</td>
+									<td>{{ tenant.payPeriod }}</td>
+									<td>{{ tenant.expiryDate }}</td>
+									<td>
+										{% if tenant.room %}
+				
+										
+										<a href="#" id="checkoutHrefId" rel="popover" data-content="click to check {{ tenant.firstName }} {{ tenant.surname }} out" data-tenant-key="{{ tenant.key}}"> Out </a>
+										{% else %}{% ifequal tenant.room None %}
+										{% if roomNotAvailable %}
+										IN
+										{% else %}
+				
+										
+										<a href="#" id="checkinHrefId" rel="popover" data-content="click to check {{ tenant.firstName }} {{ tenant.surname }} in" data-tenant-key="{{ tenant.key}}"> In </a>
+									 
+										{% endif %}
+										{% endifequal %}
+										{% endif %}
+									</td>
+									<td class="deleteTenant">										
+										<a href="#" id="tenantDeletionHrefId" rel="popover" data-content="click to delete {{ tenant.firstName }} {{ tenant.surname }} from this table" data-tenant-key="{{ tenant.key}}"> Delete </a>
+									</td >									
+									<td class="tenantActivityClass" >								
+										<a href="#" id="tenantActivityHrefId" rel="popover" data-content="click to show {{ tenant.firstName }} {{ tenant.surname }}'s activities" data-tenant-key="{{ tenant.key}}">Activities</a>
+									</td>
+								</tr>
+							{% endfor %}
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+			
 			<div id="tenantOrRoomProfile"></div>
 			<div id="showTenantActivities"></div>
 			<div id="registerTenant" >
-			<a href="#">Register New Tenant</a>
+			<a href="#" class="btn btn-primary" >Register New Tenant</a></br>
 			</div>
-			<a id="tenantHistoryHrefId" href="#">Tenant History</a></br>			
-			<a href="/">Main Page</a>
+			<a id="tenantHistoryHrefId" href="#" class="btn btn-primary">Tenant History</a></br>			
+			<!--<a href="/">Main Page</a></br>-->
+			<a href="#" id="someOtherId" class="btn btn-danger" rel="popover" data-content="do something?" data-original-title="Remainder:" >Some Other Button</a> 
+			<footer>
+				<p>&copy; Company 2012</p>
+			</footer>
+		</div><!--end container-->
+		
+
 		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.0/jquery.min.js"></script>
-		<script type="text/javascript" src="/scripts/app.js"></script>	
+		<script type="text/javascript" src="/scripts/app.js"></script>
+		<script src="/scripts/bootstrap-modal.js"></script>
+		<script src="scripts/bootstrap-tooltip.js"></script>
+		<script src="/scripts/bootstrap-popover.js"></script> 
 	</body>
 </html>

@@ -16,7 +16,10 @@ $('#roomNumberHrefId1').popover();
 $('#roomNumberHrefId2').popover(); 
 $('#tenantNameHrefId1').popover();
 $('#tenantNameHrefId2').popover(); 
-
+$('#tenantActivityHrefId').popover();
+$('#checkinHrefId').popover();
+$('#checkoutHrefId').popover();
+$('#tenantDeletionHrefId').popover();
 
 //show tenants table
 $('#tenantHrefId').click(function(){
@@ -1090,7 +1093,7 @@ $('#tenantHrefId').click(function(){
 	}
 	
 	function tenantActivityTable(data_json){
-		var jqTable = $('<label>Tenant Activities</label><table><thead><tr><th>Activity Number</th><th>Activity Name</th><th>Activity Date and Time</th></tr></thead><tbody></tbody></table>');
+		var jqTable = $('<label>Tenant Activities</label><table class="table table-bordered"><thead><tr><th>Activity Number</th><th>Activity Name</th><th>Activity Date and Time</th></tr></thead><tbody></tbody></table>');
 		var jqBody = jqTable.find('tbody');	
 				
 		$.each(data_json,function(item){
