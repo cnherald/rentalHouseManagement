@@ -734,9 +734,10 @@ $('#tenantHrefId').click(function(){
 		var surname = $(this).data('tenant-surname');
 		var tenantState = $(this).data('tenant-state');
 		if(tenantState == "pending") { 
-		$('#pendingTenantProfile').html(payNowForm(tenantKey,firstName,surname)).show();
+
+			$('#pendingTenantProfile').html(payNowForm(tenantKey,firstName,surname)).show();
 		} else {
-		$('#clearedTenantProfile').html(payNowForm(tenantKey,firstName,surname)).show();
+			$('#clearedTenantProfile').html(payNowForm(tenantKey,firstName,surname)).show();
 		}
 
 	},function() {
@@ -1198,7 +1199,7 @@ $('#tenantHrefId').click(function(){
 	//function payNowForm(tenantKey,tenant_data){
 	function payNowForm(tenantKey,firstName,surname) {
 		
-		var jqForm = $('<form id="payNowForm" onsubmit="return false;"></form>');
+		var jqForm = $('<form class="well form-inline" id="payNowForm" onsubmit="return false;"></form>');
 		//$.each(tenant_data,function(item){
 			jqForm.append(
 				

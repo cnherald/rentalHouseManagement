@@ -113,7 +113,7 @@
 										{% endif %}
 									</td>
 									<td class="deleteRoomClass">										
-										<a  href="#" rel="popover"  class="btn-danger " href="#" data-content="click to delete the room" data-original-title="Remainder:" data-room-key="{{ room.key }}">Delete</a>
+										<a  href="#" rel="popover"  class="btn-danger" href="#" data-content="click to delete the room" data-original-title="Remainder:" data-room-key="{{ room.key }}">Delete</a>
 									</td>
 									</td>
 								</tr>
@@ -126,7 +126,52 @@
 						<a href="#" class="btn btn-primary">Register New Room</a>
 					</div><br />
 				</div><!--span-->
-			</div><!--row-->			
+			</div><!--row-->
+			<div class="row">
+				<div class="span12">
+					<form class="form-horizontal">  
+							<fieldset>  
+								<legend>Controls Bootstrap supports</legend>  
+								  <div class="control-group">  
+									<label class="control-label" for="input01">Focused Input</label>  
+									<div class="controls">  
+									  <input type="text" class="input-xlarge" id="input01">  
+									  <p class="help-block">In addition to freeform text, any HTML5 text-based input appears like so.</p>  
+									</div>  
+								  </div>  
+								  <div class="control-group">  
+									<label class="control-label" for="input01">Read only Input</label>  
+									<div class="controls">  
+									  <input type="text" class="input-xlarge" id="input01" readonly="true">  
+									  <p class="help-block">In addition to freeform text, any HTML5 text-based input appears like so.</p>  
+									</div>  
+								  </div>  
+								  <div class="control-group">  
+									<label class="control-label" for="input01">Disabled Input</label>  
+									<div class="controls">  
+									  <input type="text" class="input-xlarge" id="input01" disabled>  
+									  <p class="help-block">In addition to freeform text, any HTML5 text-based input appears like so.</p>  
+									</div>  
+								  </div>  
+								  <div class="control-group">  
+									<label class="control-label" for="optionsCheckbox" >Checkbox (disabled)</label>  
+									<div class="controls">  
+									  <label class="checkbox">  
+										<input type="checkbox" id="optionsCheckbox" value="option1" disabled>  
+										Option one is this and that be sure to include why it's great  
+									  </label>  
+									</div>  
+								  </div>  
+								  <div class="form-actions">  
+									<button type="submit" class="btn btn-primary" disabled>Save changes (disabled button)</button>  
+									<button class="btn">Cancel</button>  
+								  </div>   
+							</fieldset>  
+					</form> 
+				
+				</div>
+			</div>
+			
 			<footer>
 			<p>&copy; Company 2012</p>
 			</footer>
