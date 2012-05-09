@@ -1,93 +1,141 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 	<head>
+	
 		<meta charset="utf-8">
-		<title>Room Configuration</title>
-		<link rel="stylesheet" type="text/css" href="http://yui.yahooapis.com/3.4.1/build/cssbase/cssbase-min.css">
-		<link rel="stylesheet" type="text/css" href="http://yui.yahooapis.com/3.4.1/build/cssreset/cssreset-min.css">
-		<link rel="stylesheet" type="text/css" href="http://yui.yahooapis.com/3.4.1/build/cssgrids/grids-min.css">
-		<link rel="stylesheet" type="text/css" href="/css/style.css">
-		<style>
-			body {
-				margin: 0 auto;
-				width: 960px;
-			}
+		<title>Rooms</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta name="description" content="">
+		<meta name="author" content="">
+
+		<!-- Le styles -->
+		<link href="/css/bootstrap.css" rel="stylesheet">
+		<style type="text/css">
+		  body {
+			padding-top: 60px;
+			padding-bottom: 40px;
+		  }
 		</style>
+		<link href="/css/bootstrap-responsive.css" rel="stylesheet">
+		
+
+		<!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
+		<!--[if lt IE 9]>
+		  <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+		<![endif]-->
+
+		<!-- Le fav and touch icons -->
+		<link rel="shortcut icon" href="ico/favicon.ico">
+		<link rel="apple-touch-icon-precomposed" sizes="144x144" href="ico/apple-touch-icon-144-precomposed.png">
+		<link rel="apple-touch-icon-precomposed" sizes="114x114" href="ico/apple-touch-icon-114-precomposed.png">
+		<link rel="apple-touch-icon-precomposed" sizes="72x72" href="ico/apple-touch-icon-72-precomposed.png">
+		<link rel="apple-touch-icon-precomposed" href="ico/apple-touch-icon-57-precomposed.png">
+		<!--<link rel="stylesheet" type="text/css" href="/css/style.css">-->
+	
 
 	</head>
 	<body>
-		<div>			
-			<h2>Current Rooms</h2>
-			<table>
-				<thead>
-					<tr>
-						<th>Number</th>
-						<th>Size</th>
-						<th>Rent Signal</th>
-						<th>Rent Double</th>
-						<th>Actual Rent</th>
-						<th>Availability</th>
-						<th>Tenant</th>
+		<div class="navbar navbar-fixed-top">
+		  <div class="navbar-inner">
+			<div class="container">
+			  <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			  </a>
+			  <a class="brand" href="#">Rooms Management</a>
+			  <div class="nav-collapse">
+				<ul class="nav">
+				  <li class="active"><a href="/"><i class="icon-home icon-white"></i> Home</a></li>
+				  <li><a href="tenants">Tenants</a></li>
+				  <li><a href="#">Something Else</a></li>
+				  
+				</ul>
+				<form class="navbar-search pull-right">
+					<input type="text" class="search-query" placeholder="Search">
+				</form>
+				<ul class="nav pull-right">
+					<li class="dropdown">
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown">Options<b class="caret"></b></a>
+						<ul class="dropdown-menu">
+							<li><a href="#">Link 1</a></li>
+							<li><a href="#">Link 2</a></li>
+							<li><a href="#">Link 3</a></li>
+						</ul>						
+					</li>
+				</ul>
+				
+			  </div><!--/.nav-collapse -->
+			</div>
+		  </div>
+		</div>	
+	
+		<div class="container">		
+			<div class="row">			
+				<div class="span12">	
+					<div>			
+						<h2>Current Rooms</h2>
+						<table class="table table-bordered">
+							<thead>
+								<tr>
+									<th>Number</th>
+									<th>Size</th>
+									<th>Rent Signal</th>
+									<th>Rent Double</th>
+									<th>Actual Rent</th>
+									<th>Availability</th>
+									<th>Tenant</th>
 
-						<th>Delete</th>
-					</tr>
-				</thead>
-				<tbody>
-				{% for room in rooms %}
-					<tr>							
-						<!--<td> 
-						<a href="/roomProfile?room_key={{ room.key }}">{{ room.roomNumber }}</a> 
-						</td>-->
-							
-						<td class="roomNumberEditorClass" hovertext="click to Edit room {{ room.roomNumber }} 's profile">
-							<div id="roomHoverDiv"></div>						
-							<a href="#" data-room-key="{{ room.key }}">{{ room.roomNumber }}</a>
-						</td>	
-						<td>{{ room.size }}</td>
-						<td>{{ room.rentSingle }}</td>
-						<td>{{ room.rentDouble }}</td>
-						<td>{{ room.rentActual }}</td>
-						<td> {% if room.tenant %}
-							 Occupied
-							 {% else %}
-							 Vacant
-							 {% endif %}
-						</td>
-						
-						
-						<td class="tenantProfileClass" hovertext="click to get  {{ room.tenant.firstName }} {{ room.tenant.surname }}'s profile" >
-							<div id="tenantHoverDiv"></div>
-							{% if room.tenant %}
-								<a href="#" data-tenant-key="{{ room.tenant.key}}" >{{ room.tenant.firstName }} {{ room.tenant.surname }}</a>
-							
-							<!--<a href="/tenantProfile?tenant_key={{ room.tenant.key }}">{{ room.tenant.firstName }} {{ room.tenant.surname }}</a>-->
-							{% else %}
-								EMPTY
-							{% endif %}
-						</td>
-
-						<td class="deleteRoom">
-							<button data-room-key="{{ room.key }}">Delete</button>
-						</td>
-						
-						<!--<td><a href="/roomProfile?room_key={{ room.key }}">Edit</a></td>
-						<td>
-						<input type="button" onclick="roomDeletion('/roomDeletion?room_key={{ room.key }}')" value="Delete" />-->
-						<!--<a href="/roomDeletion?room_key={{ room.key }}">Delete</a>!-->
-						</td>
-					</tr>
-				{% endfor %}
-				</tbody>
-			</table>
-		</div>
-		<div id="tenantOrRoomProfile"></div>
-		<div id="registerRoom" >
-		<a href="#">Register New Room</a>
-		</div></br>
-		<!--<a href="/roomRegister">Register New Room</a></br>-->
-		<a href="/">Main Page</a>
+									<th>Delete</th>
+								</tr>
+							</thead>
+							<tbody>
+							{% for room in rooms %}
+								<tr>								
+									<td class="roomNumberEditorClass">
+										<a href="#" rel="popover" data-content="click to Edit room {{ room.roomNumber }} 's profile" data-original-title="Remainder:" data-room-key="{{ room.key }}" >{{ room.roomNumber }}</a>
+									</td>	
+									<td>{{ room.size }}</td>
+									<td>{{ room.rentSingle }}</td>
+									<td>{{ room.rentDouble }}</td>
+									<td>{{ room.rentActual }}</td>
+									<td> {% if room.tenant %}
+										 Occupied
+										 {% else %}
+										 Vacant
+										 {% endif %}
+									</td>																		
+									<td class="tenantProfileClass" >
+										{% if room.tenant %}										
+											<a href="#" rel="popover" data-content="click to get  {{ room.tenant.firstName }} {{ room.tenant.surname }}'s profile" data-original-title="Remainder:" data-tenant-key="{{ room.tenant.key}}" >{{ room.tenant.firstName }} {{ room.tenant.surname }}</a>
+										{% else %}
+											EMPTY
+										{% endif %}
+									</td>
+									<td class="deleteRoomClass">										
+										<a  href="#" rel="popover"  class="btn-danger " href="#" data-content="click to delete the room" data-original-title="Remainder:" data-room-key="{{ room.key }}">Delete</a>
+									</td>
+									</td>
+								</tr>
+							{% endfor %}
+							</tbody>
+						</table>
+					</div>
+					<div id="tenantOrRoomProfile"></div>
+					<div id="registerRoom" >
+						<a href="#" class="btn btn-primary">Register New Room</a>
+					</div><br />
+				</div><!--span-->
+			</div><!--row-->			
+			<footer>
+			<p>&copy; Company 2012</p>
+			</footer>
+		</div><!--container-->
 		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.0/jquery.min.js"></script>
-		<script src="/scripts/app.js"></script>	
-
+		<script src="/scripts/app.js"></script>
+		<script src="/scripts/bootstrap-modal.js"></script>
+		<script src="scripts/bootstrap-tooltip.js"></script>
+		<script src="/scripts/bootstrap-popover.js"></script> 
+		<script src="/scripts/bootstrap.min.js"></script> 
 	</body>
 </html>

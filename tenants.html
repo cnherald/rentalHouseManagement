@@ -51,8 +51,21 @@
 				  <li><a href="#">Something Else</a></li>
 				  
 				</ul>
+				<form class="navbar-search pull-right">
+					<input type="text" class="search-query" placeholder="Search">
+				</form>
+				<ul class="nav pull-right">
+					<li class="dropdown">
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown">Options<b class="caret"></b></a>
+						<ul class="dropdown-menu">
+							<li><a href="#">Link 1</a></li>
+							<li><a href="#">Link 2</a></li>
+							<li><a href="#">Link 3</a></li>
+						</ul>						
+					</li>
+				</ul>
 			  </div><!--/.nav-collapse -->
-			</div>
+			</div><!--container-->
 		  </div>
 		</div>	
 		
@@ -61,7 +74,7 @@
 			<div class="row">			
 				<div class="span12">
 					<h2>Current Tenants</h2>
-					<div>				
+					<div>			
 						<table class="table table-bordered">
 							<thead>
 								<tr>
@@ -79,24 +92,20 @@
 							</thead>
 							<tbody>
 							
-							{% for tenant in tenants %}
+								{% for tenant in tenants %}
 								<tr>
-									<!--<div id="tenantHoverDiv"></div>-->
-									<td class="tenantNameEditorClass">	
-										<!--<a href="#" data-tenant-key="{{ tenant.key}}" >{{ tenant.firstName }} {{ tenant.surname }}</a>-->
-										<a href="#" id="tenantNameHrefId1" rel="popover" data-content="click to Edit {{ tenant.firstName }} {{ tenant.surname }}'s profile" data-original-title="Remainder:" data-tenant-key="{{ tenant.key }}" >{{ tenant.firstName }} {{ tenant.surname }}</a>
+									<td class="tenantNameEditorClass">										
+										<a href="#" rel="popover" data-content="click to Edit {{ tenant.firstName }} {{ tenant.surname }}'s profile" data-original-title="Remainder:" data-tenant-key="{{ tenant.key }}" >{{ tenant.firstName }} {{ tenant.surname }}</a>
 									</td>									
 									<td class="roomNumberClass" > 																
-										<a href="#" id="roomNumberHrefId1" rel="popover" data-content="click to get room {{ tenant.room.roomNumber }} 's information" data-original-title="Remainder:" data-room-key="{{ tenant.room.key }}">{{ tenant.room.roomNumber }}</a>
+										<a href="#" rel="popover" data-content="click to get room {{ tenant.room.roomNumber }} 's information" data-original-title="Remainder:" data-room-key="{{ tenant.room.key }}">{{ tenant.room.roomNumber }}</a>
 									</td>			
 									<td>{{ tenant.getRent }}</td>
 									<td>{{ tenant.startDate }}</td>
 									<td>{{ tenant.payPeriod }}</td>
 									<td>{{ tenant.expiryDate }}</td>
-									<td>
+									<td class="checkinOrOutClass">
 										{% if tenant.room %}
-				
-										
 										<a href="#" id="checkoutHrefId" rel="popover" data-content="click to check {{ tenant.firstName }} {{ tenant.surname }} out" data-tenant-key="{{ tenant.key}}"> Out </a>
 										{% else %}{% ifequal tenant.room None %}
 										{% if roomNotAvailable %}
@@ -111,13 +120,13 @@
 										{% endif %}
 									</td>
 									<td class="deleteTenant">										
-										<a href="#" id="tenantDeletionHrefId" rel="popover" data-content="click to delete {{ tenant.firstName }} {{ tenant.surname }} from this table" data-tenant-key="{{ tenant.key}}"> Delete </a>
+										<a href="#" rel="popover" data-content="click to delete {{ tenant.firstName }} {{ tenant.surname }} from this table" data-tenant-key="{{ tenant.key}}"> Delete </a>
 									</td >									
 									<td class="tenantActivityClass" >								
-										<a href="#" id="tenantActivityHrefId" rel="popover" data-content="click to show {{ tenant.firstName }} {{ tenant.surname }}'s activities" data-tenant-key="{{ tenant.key}}">Activities</a>
+										<a href="#" rel="popover" data-content="click to show {{ tenant.firstName }} {{ tenant.surname }}'s activities" data-tenant-key="{{ tenant.key}}">Activities</a>
 									</td>
 								</tr>
-							{% endfor %}
+								{% endfor %}
 							</tbody>
 						</table>
 					</div>
@@ -127,9 +136,9 @@
 			<div id="tenantOrRoomProfile"></div>
 			<div id="showTenantActivities"></div>
 			<div id="registerTenant" >
-			<a href="#" class="btn btn-primary" >Register New Tenant</a></br>
+			<a href="#" class="btn btn-primary" >Register New Tenant</a><br />
 			</div>
-			<a id="tenantHistoryHrefId" href="#" class="btn btn-primary">Tenant History</a></br>			
+			<a id="tenantHistoryHrefId" href="#" class="btn btn-primary">Tenant History</a><br />			
 			<!--<a href="/">Main Page</a></br>-->
 			<a href="#" id="someOtherId" class="btn btn-danger" rel="popover" data-content="do something?" data-original-title="Remainder:" >Some Other Button</a> 
 			<footer>
@@ -143,5 +152,6 @@
 		<script src="/scripts/bootstrap-modal.js"></script>
 		<script src="scripts/bootstrap-tooltip.js"></script>
 		<script src="/scripts/bootstrap-popover.js"></script> 
+		<script src="/scripts/bootstrap.min.js"></script> 
 	</body>
 </html>

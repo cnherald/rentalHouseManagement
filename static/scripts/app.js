@@ -7,19 +7,18 @@ $(function () {
 $('#myModal').modal({show:false});
 
 
-$('#payNowBtnId1').popover(); 
-$('#payNowBtnId2').popover(); 
+
 $('#someOtherId').popover(); 
-$('#totalPaidRentHrefId1').popover();
-$('#totalPaidRentHrefId2').popover();  
-$('#roomNumberHrefId1').popover(); 
-$('#roomNumberHrefId2').popover(); 
-$('#tenantNameHrefId1').popover();
-$('#tenantNameHrefId2').popover(); 
-$('#tenantActivityHrefId').popover();
-$('#checkinHrefId').popover();
-$('#checkoutHrefId').popover();
-$('#tenantDeletionHrefId').popover();
+$('td.tenantNameEditorClass a').popover();
+$('td.tenantProfileClass a').popover();
+$('td.roomNumberClass a').popover();
+$('td.roomNumberEditorClass a').popover();
+$('td.paymentHistoryClass a').popover();
+$('td.payNowClass a').popover();
+$('td.deleteTenant a').popover();
+$('td.tenantActivityClass a').popover();
+$('td.checkinOrOutClass a').popover();
+$('td.deleteRoomClass a').popover();
 
 //show tenants table
 $('#tenantHrefId').click(function(){
@@ -826,23 +825,9 @@ $('#tenantHrefId').click(function(){
 	
 
 //CSS style
-	//tenant profile hover description
-	$('.tenantProfileClass').mousemove(function(e) {
-		var hovertext = $(this).attr('hovertext');
-		$('#tenantHoverDiv').text(hovertext).show();
-		$('#tenantHoverDiv').css('top', e.clientY+10).css('left',e.clientX+10);	
-	}).mouseout(function(){ 
-		$('#tenantHoverDiv').hide();
-	});	
+
 	
-	//tenant profile Editor hover description
-	$('.tenantNameEditorClass').mousemove(function(e) {
-		var hovertext = $(this).attr('hovertext');
-		$('#tenantHoverDiv').text(hovertext).show();
-		$('#tenantHoverDiv').css('top', e.clientY+10).css('left',e.clientX+10);	
-	}).mouseout(function(){ 
-		$('#tenantHoverDiv').hide();
-	});	
+
 	
 
 	
@@ -855,23 +840,8 @@ $('#tenantHrefId').click(function(){
 		$('#tenantActivityHoverDiv').hide();	
 	});
 	
-	//room profile hover description
-	$('.roomNumberClass').mousemove(function(e) {
-		var hovertext = $(this).attr('hovertext');
-		$('#roomHoverDiv').text(hovertext).show();
-		$('#roomHoverDiv').css('top', e.clientY+10).css('left',e.clientX+10);	
-	}).mouseout(function(){ 
-		$('#roomHoverDiv').hide();
-	});
-	
-	//room profile Editor hover description
-	$('.roomNumberEditorClass').mousemove(function(e) {
-		var hovertext = $(this).attr('hovertext');
-		$('#roomHoverDiv').text(hovertext).show();
-		$('#roomHoverDiv').css('top', e.clientY+10).css('left',e.clientX+10);	
-	}).mouseout(function(){ 
-		$('#roomHoverDiv').hide();
-	});	
+
+
 	
 	//payment history hover description
 	$('.paymentHistoryClass').mousemove(function(e) { 
