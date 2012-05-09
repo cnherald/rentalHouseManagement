@@ -747,12 +747,12 @@ $('#tenantHrefId').click(function(){
 	});
 
 	//validate payNow form
-	$('.error').hide();
+	//$('.error').hide();
 	$(".payNowSubmitButton").click(function(){
 	//alert("you click payNow");
 		$('.error').hide();
 		var payAmount = $("input#pay_Amount").val();
-		if (payAmount == ""){
+		if (payAmount == "null"|| payAmount == ""){
 			$("label#payAmount_error").show();
 			$("input#pay_Amount").focus();
 			return false;
@@ -766,6 +766,10 @@ $('#tenantHrefId').click(function(){
 			return false;
 		}
 	});
+	
+
+	
+	
 	
 	
 	
@@ -1224,7 +1228,7 @@ $('#tenantHrefId').click(function(){
 	//function payNowForm(tenantKey,tenant_data){
 	function payNowForm(tenantKey,firstName,surname) {
 		
-		var jqForm = $('<form class="well" id="payNowForm" onsubmit="return false;"></form>');
+		var jqForm = $('<form id="payNowForm" onsubmit="return false;"></form>');
 		//$.each(tenant_data,function(item){
 			jqForm.append(
 				
@@ -1236,13 +1240,13 @@ $('#tenantHrefId').click(function(){
 				
 				+ '<div>'
 				+ '<label for="payAmount">Paid Amount: </label>'
-				+ '<input id="pay_Amount" type="number" name="payAmount" />'
+				+ '<input id="pay_Amount" type="number" name="payAmount" class="span2" placeholder="the amount you want to pay..."/>'
 				+ '<label class="error" for="payAmount" id="payAmount_error">Please type in the amount you want to pay.</label>'
 				+ '</div>'
 				
 				+ '<div>'
 				+ '<label for="payDate">Pay Date: </label>'
-				+ '<input id="pay_Date" type="date" name="payDate" placeholder="Year-Month-Day"/>'
+				+ '<input id="pay_Date" type="date" name="payDate" placeholder="Year-Month-Day" class="span2"/>'
 				+ '<label class="error" for="payDate" id="payDate_error">This field is required.</label>'
 				+ '</div>'
 	
@@ -1355,7 +1359,7 @@ $('#tenantHrefId').click(function(){
 	
 	
 	function tenantHistoryTable(data_json){
-		var jqTable = $('<label>Tenant History</label><table><thead><tr><th>Tenant Number</th><th>Tenant name</th><th>Gender</th><th>Age</th><th>Phone Number</th><th>Contact Name</th><th>Contact Number</th><th>Email</th><th>Room Number</th><th>Rent</th><th>Checkin Date</th><th>Checkout Date</th><th>Total Paid Rent</th></tr></thead><tbody></tbody></table>');
+		var jqTable = $('<label>Tenant History</label><table class="table table-bordered"><thead><tr><th>Tenant Number</th><th>Tenant name</th><th>Gender</th><th>Age</th><th>Phone Number</th><th>Contact Name</th><th>Contact Number</th><th>Email</th><th>Room Number</th><th>Rent</th><th>Checkin Date</th><th>Checkout Date</th><th>Total Paid Rent</th></tr></thead><tbody></tbody></table>');
 		var jqBody = jqTable.find('tbody');	
 		$.each(data_json,function(item){
 			jqBody.append('<tr><td>' 
