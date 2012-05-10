@@ -72,7 +72,7 @@
 		<div class="container">
 			<!--modal -->
 			<div class="modal" id="myModal2" style="display: none;">
-				<div class="modal-header">
+				<div class="modal-header">				
 				<button class="close" data-dismiss="modal">×</button>
 				<h3>Modal header</h3>
 				</div>
@@ -149,16 +149,23 @@
 				</div>
 			</div>
 			
-			<div id="tenantOrRoomProfile"></div>
-			<div id="showTenantActivities"></div>
-			<div id="registerTenant" >
 			
-			<a href="#" class="btn btn-primary" >Register New Tenant</a><br />
-			</div>
-			<a id="tenantHistoryHrefId" href="#" class="btn btn-primary">Tenant History</a><br />			
-			<!--<a href="/">Main Page</a></br>-->
-			<a href="#" id="someOtherId" class="btn btn-danger" rel="popover" data-content="do something?" data-original-title="Remainder:" >Some Other Button</a><br />	
-			<p><a class="btn-primary btn-large" data-toggle="modal" href="/tenant/#myModal2" >Launch Modal</a></p>
+			<div class="row">
+				<div class="span12">
+					<div id="tenantOrRoomProfile"></div>
+					<div id="showTenantActivities"></div>
+					<div id="registerTenant" >
+					
+						<a href="#" class="btn btn-primary" >Register New Tenant</a><br />
+					</div>
+					<a id="tenantHistoryHrefId" href="#" class="btn btn-primary">Tenant History</a><br />			
+					<!--<a href="/">Main Page</a></br>-->
+					<a href="#" id="someOtherId" class="btn btn-danger" rel="popover" data-content="do something?" data-original-title="Remainder:" >Some Other Button</a><br />	
+					<p><a class="btn-primary " data-toggle="modal" href="/tenants/#myModal2" >Launch Modal</a></p>
+				
+				</div>
+			</div><!-- row-->
+
 			
 			<footer>
 				<p>&copy; Company 2012</p>
@@ -172,5 +179,6 @@
 		<script src="scripts/bootstrap-tooltip.js"></script>
 		<script src="/scripts/bootstrap-popover.js"></script> 
 		<script src="/scripts/bootstrap.min.js"></script> 
+		
 	</body>
 </html>
