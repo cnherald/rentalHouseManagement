@@ -426,7 +426,7 @@ class ShowActivityHandler(webapp.RequestHandler):
 
        
 application = webapp.WSGIApplication([#('/', MainPage),
-                                      ('/', Bootstrapmainpage),
+                                      ('/', MainPage),
                                       ('/paynow',PayRentHandler),
                                       #('/tenantProfile',TenantProfileHandler),
                                       ('/tenantProfileDataEditor',TenantProfileDataEditorHandler),
