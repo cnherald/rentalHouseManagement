@@ -4,15 +4,14 @@
 
 $(function () {
 
-//$('#myModal1').modal({backdrop:false});
-//$('#myModal2').modal({show:false});
+$('#myModal1').modal({show:false});
+//$('#example2').modal({show:false});
 //$('#example2').modal('show');
 
+$('#kkkk').click(function(){
 
-    $('#example2').modal({
-        backdrop: true;
-    });
-
+	$('#example2').modal('show');
+});
 
 $('#someOtherId').popover(); 
 $('td.tenantNameEditorClass a').popover();

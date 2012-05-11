@@ -9,6 +9,7 @@
 
 		<!-- Le styles -->
 		<link href="/css/bootstrap.css" rel="stylesheet">
+		<link href="/css/bootstrap.min.css" rel="stylesheet">
 		<style type="text/css">
 		  body {
 			padding-top: 60px;
@@ -70,24 +71,20 @@
 		</div>	
 		
 		<div class="container">
-		<!--modal -->
-		<div  id="example2" class="modal hide fade in">
-	
+			<!--modal -->
+			<div class="modal" id="example2" style="display: none;">
 			<div class="modal-header">
 			<button class="close" data-dismiss="modal">×</button>
 			<h3>Modal header</h3>
 			</div>
 			<div class="modal-body">
-			<div id="anyId"></div>
-				<p>One fine body…</p>
-				<p>One fine body…</p>
-				<p>One fine body…</p>
+			<p>One fine bodyyyy…</p>
 			</div>
 			<div class="modal-footer">
 			<a href="#" class="btn" data-dismiss="modal">Close</a>
-			<a href="#" class="btn btn-success">Save Changes</a>
+			<a href="#" class="btn btn-primary">Save changes</a>
 			</div>
-		</div><!--ends modal -->
+			</div><!--ends modal -->
 			
 			<div class="row">			
 				<div class="span12">
@@ -165,8 +162,8 @@
 					<!--<a href="/">Main Page</a></br>-->
 					<a href="#" id="someOtherId" class="btn btn-danger" rel="popover" data-content="do something?" data-original-title="Remainder:" >Some Other Button</a><br />	
 					
-					<button data-controls-modal="example2" data-backdrop="true" data-keyboard="true" class="btn danger"> Show </button>
-
+					
+					<a class="btn" id="kkkk" data-toggle="modal" href="#example2" >Launch Modal</a>
 					
 				
 				</div>
@@ -177,16 +174,14 @@
 				<p>&copy; Company 2012</p>
 			</footer>
 		</div><!--end container-->
-		
 
-		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.0/jquery.min.js"></script>
-		<script src="/scripts/bootstrap-modal.js"></script>
 		
-		
-		<script src="scripts/bootstrap-tooltip.js"></script>
-		<script src="/scripts/bootstrap-popover.js"></script> 
-		<script src="/scripts/bootstrap.min.js"></script> 
-		<script type="text/javascript" src="/scripts/app.js"></script>
+			<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.0/jquery.min.js"></script>
+			<script type="text/javascript" src="/scripts/app.js"></script>
+			<script src="/scripts/bootstrap-modal.js"></script>
+			<script src="scripts/bootstrap-tooltip.js"></script>
+			<script src="/scripts/bootstrap-popover.js"></script>
+			<script src="/scripts/bootstrap.min.js"></script> 
 		
 	</body>
 </html>
