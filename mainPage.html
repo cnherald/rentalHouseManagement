@@ -223,7 +223,9 @@
 								<td>{{ tenant.getLastPayDate }}</td>
 								<td>{{ tenant.expiryDate }}</td>
 								<td class="payNowClass">						
-									<a href="#" rel="popover" data-content="click to pay the rent right now" data-original-title="Remainder:" data-tenant-key={{ tenant.key }} data-tenant-firstname={{ tenant.firstName }} data-tenant-surname={{tenant.surname}} data-tenant-state="cleared">Pay Now</a>
+									<!--<a href="#" rel="popover" data-content="click to pay the rent right now" data-original-title="Remainder:" data-tenant-key={{ tenant.key }} data-tenant-firstname={{ tenant.firstName }} data-tenant-surname={{tenant.surname}} data-tenant-state="cleared">Pay Now</a>-->
+									<a href="#myModal1" rel="popover" data-content="click to pay the rent right now" data-toggle="modal" data-original-title="Remainder:" data-tenant-key={{ tenant.key }} data-tenant-firstname={{ tenant.firstName }} data-tenant-surname={{tenant.surname}} data-tenant-state="cleared">Pay Now</a>
+									
 								</td>	
 							</tr>
 						{% endfor %}

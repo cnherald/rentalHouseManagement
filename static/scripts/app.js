@@ -8,9 +8,13 @@ $(function () {
 //$('#example2').modal({show:false});
 $('#example2').modal('show');
 
-$('#modal2Id').click(function(){
+$('#myModal1').bind('show',function(){
+		var tenantKey = $(this).data('tenant-key');
+		var firstName = $(this).data('tenant-firstname');
+		var surname = $(this).data('tenant-surname');
 
-	$('#modal2Id').modal('show');
+	//$('#anyId').html("<p>This is the one<p>").show();
+	$('anyId').html(payNowForm(tenantKey,firstName,surname)).show();
 });
 
 $('#someOtherId').popover(); 
