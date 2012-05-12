@@ -72,13 +72,14 @@
 		
 		<div class="container">
 			<!--modal -->
-			<div class="modal hide" id="myModal"><!-- note the use of "hide" class -->
+			<div class="modal hide" id="myModal2"><!-- note the use of "hide" class -->
 			  <div class="modal-header">
 				<button class="close" data-dismiss="modal">×</button>
 				<h3>Modal header</h3>
 			  </div>
 			  <div class="modal-body">
 				<p>One fine body…</p>
+				<div id="anyId"></div>
 			  </div>
 			  <div class="modal-footer">
 				<a href="#" class="btn" data-dismiss="modal">Close</a><!-- note the use of "data-dismiss" -->
@@ -114,7 +115,8 @@
 										<a href="#" rel="popover" data-content="click to Edit {{ tenant.firstName }} {{ tenant.surname }}'s profile" data-original-title="Remainder:" data-tenant-key="{{ tenant.key }}" >{{ tenant.firstName }} {{ tenant.surname }}</a>
 									</td>									
 									<td class="roomNumberClass" > 																
-										<a href="#" rel="popover" data-content="click to get room {{ tenant.room.roomNumber }} 's information" data-original-title="Remainder:" data-room-key="{{ tenant.room.key }}">{{ tenant.room.roomNumber }}</a>
+										<!--<a href="#" rel="popover" data-content="click to get room {{ tenant.room.roomNumber }} 's information" data-original-title="Remainder:" data-room-key="{{ tenant.room.key }}">{{ tenant.room.roomNumber }}</a>-->
+										<a href="#" id="myModal2Id" data-toggle="modal" rel="popover" data-content="click to get room {{ tenant.room.roomNumber }} 's information" data-original-title="Remainder:" data-room-key="{{ tenant.room.key }}">{{ tenant.room.roomNumber }}</a>
 									</td>			
 									<td>{{ tenant.getRent }}</td>
 									<td>{{ tenant.startDate }}</td>
@@ -166,8 +168,9 @@
 					
 					<!--<a class="btn" id="modal2Id" data-toggle="modal" href="#example2" >Launch Modal</a>-->
 					<!--<a class="btn" data-controls-modal="example2" data-backdrop="static" >Launch Modal</a>-->
-					<a id="myModal2Id" class="btn" data-toggle="modal" href="#myModal2">Launch Modal</a>
-				
+					<div class="myModal2Class">
+					<a id="myModal2Id" class="btn" data-toggle="modal" >Launch Modal</a>
+					</div>
 				</div>
 			</div><!-- row-->
 

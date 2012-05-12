@@ -6,9 +6,9 @@ $(function () {
 
 //$('#myModal1').modal({show:false});
 //$('#example2').modal({show:false});
-$('#example2').modal('show');
+//$('#example2').modal('show');
 
-$('#myModal1').bind('show',function(){
+$('#myModal11111').bind('show',function(){
 		var tenantKey = $(this).data('tenant-key');
 		var firstName = $(this).data('tenant-firstname');
 		var surname = $(this).data('tenant-surname');
@@ -16,6 +16,8 @@ $('#myModal1').bind('show',function(){
 	//$('#anyId').html("<p>This is the one<p>").show();
 	$('anyId').html(payNowForm(tenantKey,firstName,surname)).show();
 });
+
+
 
 $('#someOtherId').popover(); 
 $('td.tenantNameEditorClass a').popover();
@@ -523,8 +525,28 @@ $('#tenantHrefId').click(function(){
 		}
 		return false;
 	});
+function activateModal(){
+$('#myModal2').on('show',function(){
+
+	
+});
+}
 
 
+$('td.roomNumberClass a').click(function(){
+	//activateModal();
+	//$('#myModal2').modal('show');
+	//$('#myModal1').modal({show:false});
+	$('#myModal2').on('show',function(){
+
+	alert("hhkhkds");
+	//$('#anyId').html("<p>This is the one<p>").show();
+	//$('anyId').html(payNowForm(tenantKey,firstName,surname)).show();
+})
+
+});	
+	
+	
 	//New toggling the room profile
 	$('td.roomNumberClass a').toggle(function() {
 		var roomKey = $(this).data('room-key');
