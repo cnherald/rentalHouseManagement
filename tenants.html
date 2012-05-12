@@ -9,7 +9,7 @@
 
 		<!-- Le styles -->
 		<link href="/css/bootstrap.css" rel="stylesheet">
-		<link href="/css/bootstrap.min.css" rel="stylesheet">
+
 		<style type="text/css">
 		  body {
 			padding-top: 60px;
@@ -72,19 +72,20 @@
 		
 		<div class="container">
 			<!--modal -->
-			<div class="modal" id="example2" style="display: none;">
-			<div class="modal-header">
-			<button class="close" data-dismiss="modal">×</button>
-			<h3>Modal header</h3>
-			</div>
-			<div class="modal-body">
-			<p>One fine bodyyyy…</p>
-			</div>
-			<div class="modal-footer">
-			<a href="#" class="btn" data-dismiss="modal">Close</a>
-			<a href="#" class="btn btn-primary">Save changes</a>
-			</div>
-			</div><!--ends modal -->
+			   <div class="modal hide fade in" id="example2" >
+				<div class="modal-header">
+					<a class="close" href="#">×</a>
+					<h3>Modal Heading</h3>
+				</div>
+				<div class="modal-body">
+				   <p>One fine body…</p>
+				</div>
+				<div class="modal-footer">
+					<a class="btn primary" href="#">Primary</a>
+					<a class="btn secondary" href="#">Secondary</a>
+				</div>
+				</div>
+			<!--ends modal -->
 			
 			<div class="row">			
 				<div class="span12">
@@ -163,7 +164,8 @@
 					<a href="#" id="someOtherId" class="btn btn-danger" rel="popover" data-content="do something?" data-original-title="Remainder:" >Some Other Button</a><br />	
 					
 					
-					<a class="btn" id="kkkk" data-toggle="modal" href="#example2" >Launch Modal</a>
+					<!--<a class="btn" id="modal2Id" data-toggle="modal" href="#example2" >Launch Modal</a>-->
+					<a class="btn" data-controls-modal="example2" data-backdrop="static" >Launch Modal</a>
 					
 				
 				</div>

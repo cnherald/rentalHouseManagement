@@ -4,13 +4,13 @@
 
 $(function () {
 
-$('#myModal1').modal({show:false});
+//$('#myModal1').modal({show:false});
 //$('#example2').modal({show:false});
-//$('#example2').modal('show');
+$('#example2').modal('show');
 
-$('#kkkk').click(function(){
+$('#modal2Id').click(function(){
 
-	$('#example2').modal('show');
+	$('#modal2Id').modal('show');
 });
 
 $('#someOtherId').popover(); 
