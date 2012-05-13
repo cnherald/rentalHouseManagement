@@ -526,23 +526,25 @@ $('#tenantHrefId').click(function(){
 		return false;
 	});
 function activateModal(){
-$('#myModal2').on('show',function(){
 
+//$('#myModal2').modal('show');
+$('#myModal2').on('show',function(){
+	alert("pjpjpp");
 	
 });
 }
 
 
 $('td.roomNumberClass a').click(function(){
-	//activateModal();
+	activateModal();
 	//$('#myModal2').modal('show');
 	//$('#myModal1').modal({show:false});
-	$('#myModal2').on('show',function(){
+	//$('#myModal2').on('show',function(){
 
-	alert("hhkhkds");
+	//alert("hhkhkds");
 	//$('#anyId').html("<p>This is the one<p>").show();
 	//$('anyId').html(payNowForm(tenantKey,firstName,surname)).show();
-})
+//})
 
 });	
 	
