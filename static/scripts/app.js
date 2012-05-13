@@ -525,29 +525,30 @@ $('#tenantHrefId').click(function(){
 		}
 		return false;
 	});
-function activateModal(){
 
-//$('#myModal2').modal('show');
-$('#myModal2').on('show',function(){
-	alert("pjpjpp");
+
+
+// display room profile on bootstrap modal
+$('td.roomNumberClass a').click(function () {
+	$('#myModal2').modal('show');
+	var roomKey = $(this).data('room-key');
+	$.ajax({
+		url:"roomProfileData?room_key="+roomKey,
+		type:'GET',
+		dataType:'json',
+		success: function(data_json){
+			$('#myModal2').trigger("myCustomEvent", [ data_json ]);		
+		}
+	});
 	
 });
-}
 
+//$('#myModal2').bind('myCustomEvent',function(e, roomProfileData){ //both "on" and "bind" are working here
+$('#myModal2').on('myCustomEvent',function(e, roomProfileData){
+	$('h3').text("Room Profile");
+	$('#roomProfileId').html(roomProfileTable(roomProfileData));
+});
 
-$('td.roomNumberClass a').click(function(){
-	activateModal();
-	//$('#myModal2').modal('show');
-	//$('#myModal1').modal({show:false});
-	//$('#myModal2').on('show',function(){
-
-	//alert("hhkhkds");
-	//$('#anyId').html("<p>This is the one<p>").show();
-	//$('anyId').html(payNowForm(tenantKey,firstName,surname)).show();
-//})
-
-});	
-	
 	
 	//New toggling the room profile
 	$('td.roomNumberClass a').toggle(function() {
