@@ -25,7 +25,7 @@ $('td.tenantProfileClass a').popover();
 $('td.roomNumberClass a').popover();
 $('td.roomNumberEditorClass a').popover();
 $('td.paymentHistoryClass a').popover();
-$('td.payNowClass a').popover();
+$('td.payRentClass a').popover();
 $('td.deleteTenant a').popover();
 $('td.tenantActivityClass a').popover();
 $('td.checkinOrOutClass a').popover();
@@ -530,23 +530,23 @@ $('#tenantHrefId').click(function(){
 
 // display room profile on bootstrap modal
 $('td.roomNumberClass a').click(function () {
-	$('#roomProfileModal').modal('show');
+	$('#modal1').modal('show');
 	var roomKey = $(this).data('room-key');
 	$.ajax({
 		url:"roomProfileData?room_key="+roomKey,
 		type:'GET',
 		dataType:'json',
 		success: function(data_json){
-			$('#roomProfileModal').trigger("modalDisplayEvent", [ data_json ]);		
+			$('#modal1').trigger("modalDisplayEvent", [ data_json ]);		
 		}
 	});
 	
 });
 
-//$('#roomProfileModal').bind('myCustomEvent',function(e, roomProfileData){ //both "on" and "bind" are working here
-$('#roomProfileModal').on('modalDisplayEvent',function(e, roomProfileData){
+//$('#modal1').bind('myCustomEvent',function(e, roomProfileData){ //both "on" and "bind" are working here
+$('#modal1').on('modalDisplayEvent',function(e, roomProfileData){
 	$('h3').text("Room Profile");
-	$('#roomProfileId').html(roomProfileTable(roomProfileData));
+	$('#displayHereId').html(roomProfileTable(roomProfileData));
 });
 
 	
@@ -576,6 +576,25 @@ $('#roomProfileModal').on('modalDisplayEvent',function(e, roomProfileData){
 			$('#tenantOrRoomProfile').hide();
 			return false;
 	});
+	
+	
+	//display pay rent form on bootstrap modal
+	$('td.payRentClass a').click(function () {
+	$('#modal1').modal('show');
+	var tenantKey = $(this).data('tenant-key');
+	var firstName = $(this).data('tenant-firstname');
+	var surname = $(this).data('tenant-surname');
+
+	$('#modal1').trigger("modalDisplayEvent", [ tenantKey, firstName,surname]);		
+	
+	
+});
+
+//$('#modal1').bind('myCustomEvent',function(e, roomProfileData){ //both "on" and "bind" are working here
+$('#modal1').on('modalDisplayEvent',function(e, tenantKey, firstName,surname){
+	$('h3').text("Pay Rent Form");
+	$('#displayHereId').html(payNowForm(tenantKey,firstName,surname));
+});
 	
 	
 	

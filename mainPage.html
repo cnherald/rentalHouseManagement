@@ -55,13 +55,13 @@
 
     <div class="container">
 		<!--modal -->
-		<div class="modal" id="roomProfileModal" style="display: none;">
+		<div class="modal" id="modal1" style="display: none;">
 			<div class="modal-header">
 			<button class="close" data-dismiss="modal">×</button>
 			<h3>Modal header</h3>
 			</div>
 			<div class="modal-body">
-			<div id="roomProfileId"></div>
+			<div id="displayHereId"></div>
 			</div>
 			<div class="modal-footer">
 			<a href="#" class="btn" data-dismiss="modal">Close</a>
@@ -149,8 +149,10 @@
 								<td>{{ tenant.getUnpaidWeeks }}</td>
 								<td>{{ tenant.getUnpaidRent }}</td>
 								<td>{{ tenant.getRentToPay }}</td>
-								<td class="payNowClass">
-									<a href="#" rel="popover" data-content="click to pay the rent right now" data-original-title="Remainder:" data-tenant-key={{ tenant.key }} data-tenant-firstname={{ tenant.firstName }} data-tenant-surname={{tenant.surname}} data-tenant-state="pending">Pay Now</a> 
+								<!--<td class="payNowClass">-->
+								<td class="payRentClass">
+									<!--<a href="#" rel="popover" data-content="click to pay the rent right now" data-original-title="Remainder:" data-tenant-key={{ tenant.key }} data-tenant-firstname={{ tenant.firstName }} data-tenant-surname={{tenant.surname}} data-tenant-state="pending">Pay Now</a>--> 
+									<a href="#" id="payRentModalId" data-toggle="modal" rel="popover" data-content="click to pay the rent right now" data-original-title="Remainder:" data-tenant-key="{{ tenant.key }}" data-tenant-firstname="{{ tenant.firstName }}" data-tenant-surname="{{tenant.surname}}">Pay Now</a>
 								</td>
 							</tr>
 						{% endfor %}
@@ -198,9 +200,10 @@
 								</td>
 								<td>{{ tenant.getLastPayDate }}</td>
 								<td>{{ tenant.expiryDate }}</td>
-								<td class="payNowClass">						
+								<td class="payRentClass">						
 									<!--<a href="#" rel="popover" data-content="click to pay the rent right now" data-original-title="Remainder:" data-tenant-key={{ tenant.key }} data-tenant-firstname={{ tenant.firstName }} data-tenant-surname={{tenant.surname}} data-tenant-state="cleared">Pay Now</a>-->
-									<a href="#myModal1" rel="popover" data-content="click to pay the rent right now" data-toggle="modal" data-original-title="Remainder:" data-tenant-key={{ tenant.key }} data-tenant-firstname={{ tenant.firstName }} data-tenant-surname={{tenant.surname}} data-tenant-state="cleared">Pay Now</a>
+									<!--<a href="#myModal1" rel="popover" data-content="click to pay the rent right now" data-toggle="modal" data-original-title="Remainder:" data-tenant-key={{ tenant.key }} data-tenant-firstname={{ tenant.firstName }} data-tenant-surname={{tenant.surname}} data-tenant-state="cleared">Pay Now</a>-->
+									<a href="#" id="payRentModalId" data-toggle="modal" rel="popover" data-content="click to pay the rent right now" data-original-title="Remainder:" data-tenant-key="{{ tenant.key }}" data-tenant-firstname="{{ tenant.firstName }}" data-tenant-surname="{{tenant.surname}}">Pay Now</a>
 									
 								</td>	
 							</tr>
