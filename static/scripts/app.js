@@ -530,21 +530,21 @@ $('#tenantHrefId').click(function(){
 
 // display room profile on bootstrap modal
 $('td.roomNumberClass a').click(function () {
-	$('#myModal2').modal('show');
+	$('#roomProfileModal').modal('show');
 	var roomKey = $(this).data('room-key');
 	$.ajax({
 		url:"roomProfileData?room_key="+roomKey,
 		type:'GET',
 		dataType:'json',
 		success: function(data_json){
-			$('#myModal2').trigger("myCustomEvent", [ data_json ]);		
+			$('#roomProfileModal').trigger("modalDisplayEvent", [ data_json ]);		
 		}
 	});
 	
 });
 
-//$('#myModal2').bind('myCustomEvent',function(e, roomProfileData){ //both "on" and "bind" are working here
-$('#myModal2').on('myCustomEvent',function(e, roomProfileData){
+//$('#roomProfileModal').bind('myCustomEvent',function(e, roomProfileData){ //both "on" and "bind" are working here
+$('#roomProfileModal').on('modalDisplayEvent',function(e, roomProfileData){
 	$('h3').text("Room Profile");
 	$('#roomProfileId').html(roomProfileTable(roomProfileData));
 });
