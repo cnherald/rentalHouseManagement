@@ -537,14 +537,14 @@ $('td.roomNumberClass a').click(function () {
 		type:'GET',
 		dataType:'json',
 		success: function(data_json){
-			$('#modal1').trigger("modalDisplayEvent", [ data_json ]);		
+			$('#modal1').trigger("appendFormEvent", [ data_json ]);		
 		}
 	});
 	
 });
 
 //$('#modal1').bind('myCustomEvent',function(e, roomProfileData){ //both "on" and "bind" are working here
-$('#modal1').on('modalDisplayEvent',function(e, roomProfileData){
+$('#modal1').on('appendFormEvent',function(e, roomProfileData){
 	$('h3').text("Room Profile");
 	$('#displayHereId').html(roomProfileTable(roomProfileData));
 });
