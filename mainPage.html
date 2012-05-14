@@ -130,7 +130,7 @@
 					</tbody>
 						{% for tenant in pendingTenants %}
 							<tr>
-								<td class="tenantProfileClass">
+								<td class="tenantNameClass">
 									<a href="#" rel="popover" data-content="click to get {{ tenant.firstName }} {{ tenant.surname }}'s profile" data-original-title="Remainder:" data-tenant-key="{{ tenant.key }}" data-tenant-state="pending">{{ tenant.firstName }} {{ tenant.surname }}</a>					
 								</td>
 								<td class="roomNumberClass">
@@ -184,7 +184,7 @@
 						<tbody>
 						{% for tenant in clearedTenants %}
 							<tr>							
-								<td class="tenantProfileClass" >	
+								<td class="tenantNameClass" >	
 									<a href="#" rel="popover" data-content="click to get {{ tenant.firstName }} {{ tenant.surname }}'s profile" data-original-title="Remainder:" data-tenant-key="{{ tenant.key }}" data-tenant-state="cleared">{{ tenant.firstName }} {{ tenant.surname }}</a>
 								</td>
 								<td class="roomNumberClass" > 																					

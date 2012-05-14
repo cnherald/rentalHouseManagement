@@ -21,7 +21,7 @@ $('#myModal11111').bind('show',function(){
 
 $('#someOtherId').popover(); 
 $('td.tenantNameEditorClass a').popover();
-$('td.tenantProfileClass a').popover();
+$('td.tenantNameClass a').popover();
 $('td.roomNumberClass a').popover();
 $('td.roomNumberEditorClass a').popover();
 $('td.paymentHistoryClass a').popover();
@@ -549,6 +549,26 @@ $('#modal1').on('appendFormEvent',function(e, roomProfileData){
 	$('#displayHereId').html(roomProfileTable(roomProfileData));
 });
 
+//display tenant profile on bootstrap modal
+$('td.tenantNameClass a').click(function() {
+	$('#modal1').modal('show');
+	var tenantKey = $(this).data('tenant-key');
+	$.ajax({
+		url:"tenantProfileData?tenant_key=" + tenantKey,
+		type:'GET',
+		dataType:'json',// this is important in order to secure the returned data type!!
+		success: function(data_json){			
+			$('#modal1').trigger("appendFormEvent", [ data_json ]);
+		}
+	});
+
+});
+
+$('#modal1').on('appendFormEvent',function(e, tenantProfileData){
+	$('h3').text("Tenant Profile");
+	$('#displayHereId').html(tenantInfoTable(tenantProfileData));
+});
+
 	
 	//New toggling the room profile
 	$('td.roomNumberClass a').toggle(function() {
@@ -627,7 +647,7 @@ $('#modal1').on('modalDisplayEvent',function(e, tenantKey, firstName,surname){
 	});
 	
 	//toggling the tenant'profile 
-	// $('td.tenantProfileClass a').toggle(function() { 
+	// $('td.tenantNameClass a').toggle(function() { 
 		// var tenantKey = $(this).data('tenant-key');
 		// var tenantState = $(this).data('tenant-state');
 		// $.ajax({
@@ -652,7 +672,7 @@ $('#modal1').on('modalDisplayEvent',function(e, tenantKey, firstName,surname){
 	// });
 	
 	//new toggling the tenant'profile
-	$('td.tenantProfileClass a').toggle(function() { 
+	$('td.tenantNameClass1 a').toggle(function() { 
 		var tenantKey = $(this).data('tenant-key');
 		var tenantState = $(this).data('tenant-state');
 		$.ajax({
