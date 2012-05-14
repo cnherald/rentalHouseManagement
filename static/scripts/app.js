@@ -14,7 +14,7 @@ $('#myModal11111').bind('show',function(){
 		var surname = $(this).data('tenant-surname');
 
 	//$('#anyId').html("<p>This is the one<p>").show();
-	$('anyId').html(payNowForm(tenantKey,firstName,surname)).show();
+	$('anyId').html(payRentForm(tenantKey,firstName,surname)).show();
 });
 
 
@@ -103,7 +103,7 @@ $('#tenantHrefId').click(function(){
 			var r = confirm("Do you want to pay the unpaid rent now?");
 			if (r){
 
-				$('#tenantOrRoomProfile').html(payNowForm(tenantKey,firstName,surname)).show();
+				$('#tenantOrRoomProfile').html(payRentForm(tenantKey,firstName,surname)).show();
 			}
 			
 		}else {		
@@ -224,33 +224,6 @@ $('#tenantHrefId').click(function(){
 	
 	});
 	
-	//reset 
-	// $('#orderRoomForm input[type=reset]').click(function (evt) {
-		// $('#orderRoomForm .rent-input').attr('disabled', true);
-	// });
-	//submit
-	// $('#orderRoomForm').submit(function () {
-		// var values = $('#orderRoomForm').serializeArray(),
-			// data = {};
-		// $.each(values, function (index, item) {
-			// if (item.name == 'room_rentSingle' || item.name === 'room_rentDouble') {
-				// data.actualRent = item.value;
-				// console.log('>>>',data);
-			// } else {
-				// data[item.name] = item.value;
-			// }
-		// });
-		// var dataStringJson = JSON.stringify(data);
-		// $.ajax({
-			// url : '/roomInfo',
-			// type : 'POST',
-			// data : dataStringJson,
-			// success: function(resp) {
-				// alert(resp.returnText);
-			// }
-		// });
-		// return false;
-	// });
 		
 //register a tenant	
 			
@@ -379,37 +352,37 @@ $('#tenantHrefId').click(function(){
 	// $(function() {
 		// $('.error').hide();
 	// });
-		$(".roomRegisterButton").click(function() {
-			$('.error').hide();
-			var roomNumber = $("input#room_number").val();
-			if (roomNumber==null || roomNumber =="") {
-				$("label#roomNumber_error").show();
-				$("input#room_number").focus();
-				return false;
-			}
-			
-			var roomSize = $("input#room_size").val();
-			if (roomSize==null || roomSize =="") {
-				$("label#roomSize_error").show();
-				$("input#room_size").focus();
-				return false;
-			}
-			
-			var rentSingle = $("input#room_rent_single").val();
-			if (rentSingle==null || rentSingle =="") {
-				$("label#rentSingle_error").show();
-				$("input#room_rent_single").focus();
-				return false;
-			}
-			
-			var rentDouble = $("input#room_rent_double").val();
-			if (rentDouble== null || rentDouble =="") {
-				$("label#rentDouble_error").show();
-				$("input#room_rent_double").focus();
-				return false;
-			}
+	$(".roomRegisterButton").click(function() {
+		$('.error').hide();
+		var roomNumber = $("input#room_number").val();
+		if (roomNumber==null || roomNumber =="") {
+			$("label#roomNumber_error").show();
+			$("input#room_number").focus();
+			return false;
+		}
 		
-		});
+		var roomSize = $("input#room_size").val();
+		if (roomSize==null || roomSize =="") {
+			$("label#roomSize_error").show();
+			$("input#room_size").focus();
+			return false;
+		}
+		
+		var rentSingle = $("input#room_rent_single").val();
+		if (rentSingle==null || rentSingle =="") {
+			$("label#rentSingle_error").show();
+			$("input#room_rent_single").focus();
+			return false;
+		}
+		
+		var rentDouble = $("input#room_rent_double").val();
+		if (rentDouble== null || rentDouble =="") {
+			$("label#rentDouble_error").show();
+			$("input#room_rent_double").focus();
+			return false;
+		}
+	
+	});
 		//});
 		
 		$('#roomRegister').submit(function() {
@@ -537,14 +510,14 @@ $('td.roomNumberClass a').click(function () {
 		type:'GET',
 		dataType:'json',
 		success: function(data_json){
-			$('#modal1').trigger("appendFormEvent", [ data_json ]);		
+			$('#modal1').trigger("renderRoomProfileFormEvent", [ data_json ]);		
 		}
 	});
 	
 });
 
 //$('#modal1').bind('myCustomEvent',function(e, roomProfileData){ //both "on" and "bind" are working here
-$('#modal1').on('appendFormEvent',function(e, roomProfileData){
+$('#modal1').on('renderRoomProfileFormEvent',function(e, roomProfileData){
 	$('h3').text("Room Profile");
 	$('#displayHereId').html(roomProfileTable(roomProfileData));
 });
@@ -558,20 +531,66 @@ $('td.tenantNameClass a').click(function() {
 		type:'GET',
 		dataType:'json',// this is important in order to secure the returned data type!!
 		success: function(data_json){			
-			$('#modal1').trigger("appendFormEvent", [ data_json ]);
+			$('#modal1').trigger("renderTenantInfoFormEvent", [ data_json ]);
 		}
 	});
 
 });
 
-$('#modal1').on('appendFormEvent',function(e, tenantProfileData){
+$('#modal1').on('renderTenantInfoFormEvent',function(e, tenantProfileData){
 	$('h3').text("Tenant Profile");
 	$('#displayHereId').html(tenantInfoTable(tenantProfileData));
 });
 
-	
+//display tenant payment history on bootstrap modal
+	$('td.paymentHistoryClass a').click(function(){
+		$('#modal1').modal('show');
+		var totalPaidRent= $(this).data('totalpaidrent');
+		if(!(totalPaidRent == 0)){
+			var tenantKey = $(this).data('tenant-key');
+			//var tenantState = $(this).data('tenant-state');
+			$.ajax({
+				url:"paymentHistory?tenant_key=" + tenantKey,
+				type:'GET',
+				dataType:'json',// this is important in order to secure the returned data type!!
+				success: function(data_json){
+					$('#modal1').trigger("tenantPaymentHistoryFormEvent", [ data_json ]);
+				}				
+			});	
+		}
+
+	});
+		
+$('#modal1').on('tenantPaymentHistoryFormEvent', function(e,tenantPaymentHistoryData){
+	$('h3').text("Tenant Payment History");
+	$('#displayHereId').html(paymentHistoryTable(tenantPaymentHistoryData)) ;
+
+});
+
+//display tenant activities on bootstrap modal
+$('td.tenantActivityClass a').click(function(){
+	$('#modal1').modal('show');
+	var tenantKey = $(this).data('tenant-key');
+	$.ajax({
+		url:"showActivity?tenant_key=" + tenantKey,
+		type: 'GET',
+		dataType: 'json',
+		success: function(data_json){
+			$('#modal1').trigger('tenantActivityFormEvent', [data_json]);
+			//$('#showTenantActivities').html(tenantActivityTable(data_json)).show();
+		}					
+	});
+
+});
+
+$('#modal1').bind('tenantActivityFormEvent', function(e, tenantActivityData){
+	$('h3').text("Tenant Activities");
+	$('#displayHereId').html(tenantActivityTable(tenantActivityData));
+
+});
+
 	//New toggling the room profile
-	$('td.roomNumberClass a').toggle(function() {
+	$('td.roomNumberClass1 a').toggle(function() {
 		var roomKey = $(this).data('room-key');
 		var tenantState =$(this).data('tenant-state');
 		$.ajax({
@@ -598,7 +617,7 @@ $('#modal1').on('appendFormEvent',function(e, tenantProfileData){
 	});
 	
 	
-	//display pay rent form on bootstrap modal
+//display pay rent form on bootstrap modal
 	$('td.payRentClass a').click(function () {
 	$('#modal1').modal('show');
 	var tenantKey = $(this).data('tenant-key');
@@ -613,13 +632,38 @@ $('#modal1').on('appendFormEvent',function(e, tenantProfileData){
 //$('#modal1').bind('myCustomEvent',function(e, roomProfileData){ //both "on" and "bind" are working here
 $('#modal1').on('modalDisplayEvent',function(e, tenantKey, firstName,surname){
 	$('h3').text("Pay Rent Form");
-	$('#displayHereId').html(payNowForm(tenantKey,firstName,surname));
+	$('#displayHereId').html(payRentForm(tenantKey,firstName,surname));
 });
 	
+$('#payRentSubmitId').on('click', function(e){
+	alert("you pay");
+	//$('#displayHereId')
+	$('#payRentFormId').submit();
 	
+});	
+
+$('#payRentFormId').on('submit', function(){
+	var values = $(this).serializeArray(),data = {};
+	alert("these are " + values);
+	$.each(values, function(index, item) {
+		data[item.name] = item.value;
+	}); 
+	var dataStringJson = JSON.stringify(data);
+	$.ajax({
+		url:'/payRent',
+		type:'POST',
+		data: dataStringJson,
+		success:function(resp){
+			alert(resp.payRentSuccessNotice);
+			window.location.replace("../");				
+		}
+	});				
+	return false;
+
+});
 	
 	//toggling the tenant's payment history
-	$('td.paymentHistoryClass a').toggle(function() {
+	$('td.paymentHistoryClass1 a').toggle(function() {
 	
 		var totalPaidRent= $(this).data('totalpaidrent');
 		if(!(totalPaidRent == 0)){
@@ -646,30 +690,7 @@ $('#modal1').on('modalDisplayEvent',function(e, tenantKey, firstName,surname){
 		return false;
 	});
 	
-	//toggling the tenant'profile 
-	// $('td.tenantNameClass a').toggle(function() { 
-		// var tenantKey = $(this).data('tenant-key');
-		// var tenantState = $(this).data('tenant-state');
-		// $.ajax({
-			// url:"tenantProfile?tenant_key=" + tenantKey,
-			// type:'GET',
-			// success: function(html) {
-				// if(tenantState == "pending") { 
-						// $('#pendingTenantProfile').html($(html).find('table')).show();
-					
-				// } else if (tenantState == "cleared") {
-						// $('#clearedTenantProfile').html($(html).find('table')).show();				
-				// } else {
-						// $('#tenantOrRoomProfile').html($(html).find('table')).show();				
-				// } 
-			// }				
-		// });	
-	// },function() {
-		// $('#pendingTenantProfile').hide();
-		// $('#clearedTenantProfile').hide();
-		// $('#tenantOrRoomProfile').hide();
-		// return false;
-	// });
+
 	
 	//new toggling the tenant'profile
 	$('td.tenantNameClass1 a').toggle(function() { 
@@ -701,11 +722,11 @@ $('#modal1').on('modalDisplayEvent',function(e, tenantKey, firstName,surname){
 		
 	//toggling Tenant's Activities Table
 	//$('#activityHrefId').toggle(function(){
-	$('td.tenantActivityClass a').toggle(function() {
+	$('td.tenantActivityClass1 a').toggle(function() {
 	//$('#tenantOrRoomProfile').on('toggle','#tenantActivityHrefId',function(evt){
 	//$('#tenantActivityHrefId').toggle(function(){
 		var tenantKey = $(this).data('tenant-key');
-		alert("you click activity");
+		//alert("you click activity");
 		$.ajax({
 			url:"showActivity?tenant_key=" + tenantKey,
 			type: 'GET',
@@ -736,22 +757,7 @@ $('#modal1').on('modalDisplayEvent',function(e, tenantKey, firstName,surname){
 			return false;
 	});	
 	
-	//toggling the tenant'profile Editor
-	// $('td.tenantNameEditorClass a').toggle(function() { 
-		// var tenantKey = $(this).data('tenant-key');		
-		// $.ajax({
-			// url:"tenantProfileEditor?tenant_key=" + tenantKey,
-			// type:'GET',
-			// success: function(html) {													
-					// $('#tenantOrRoomProfile').html(html).show();								
-			// }				
-		// });
-	
-	// },function() {
-		// $('#tenantOrRoomProfile').hide();
-		
-		// return false;
-	// });
+
 	
 	//New toggling the tenant'profile Editor
 	$('td.tenantNameEditorClass a').toggle(function(){
@@ -794,12 +800,12 @@ $('#modal1').on('modalDisplayEvent',function(e, tenantKey, firstName,surname){
 
 	
 	
-	//$('td.payNowClass a').click(function(evt) { //works
-	//$('#payNowBtnId1').click(function(evt) {
-	//$('#payNowBtnId1').toggle(function() {
-	$('td.payNowClass a').toggle(function() {
-	//$('td.payNowClass a').bind("toggle",(function() {//not working
-	//$('#payNowBtnId1').bind("click", (function() { //works 
+	//$('td.payRentClass a').click(function(evt) { //works
+	//$('#payRentBtnId1').click(function(evt) {
+	//$('#payRentBtnId1').toggle(function() {
+	$('td.payRentClass1 a').toggle(function() {
+	//$('td.payRentClass a').bind("toggle",(function() {//not working
+	//$('#payRentBtnId1').bind("click", (function() { //works 
 	//alert("it workssss");
 
 		var tenantKey = $(this).data('tenant-key');
@@ -808,9 +814,9 @@ $('#modal1').on('modalDisplayEvent',function(e, tenantKey, firstName,surname){
 		var tenantState = $(this).data('tenant-state');
 		if(tenantState == "pending") { 
 
-			$('#pendingTenantProfile').html(payNowForm(tenantKey,firstName,surname)).show();
+			$('#pendingTenantProfile').html(payRentForm(tenantKey,firstName,surname)).show();
 		} else {
-			$('#clearedTenantProfile').html(payNowForm(tenantKey,firstName,surname)).show();
+			$('#clearedTenantProfile').html(payRentForm(tenantKey,firstName,surname)).show();
 		}
 
 	},function() {
@@ -819,10 +825,10 @@ $('#modal1').on('modalDisplayEvent',function(e, tenantKey, firstName,surname){
 		return false;
 	});
 
-	//validate payNow form
+	//validate payRent form
 	//$('.error').hide();
-	$(".payNowSubmitButton").click(function(){
-	//alert("you click payNow");
+	$(".payRentSubmitButton").click(function(){
+	//alert("you click payRent");
 		$('.error').hide();
 		var payAmount = $("input#pay_Amount").val();
 		if (payAmount == "null"|| payAmount == ""){
@@ -846,12 +852,12 @@ $('#modal1').on('modalDisplayEvent',function(e, tenantKey, firstName,surname){
 	
 	
 	
-	//$('#payNowForm').submit(function(){
-	$('#pendingTenantProfile').on('click','#payNowSubmit_btn',function(evt){	//attaching "change" event to dynamic html elements	
-	//$('#payNowSubmit_btn').click(function() {
-	//$('payNowName').submit(function() {
-		//$('#payNowSubmit_btn').attr('disabled', true);
-		var values = $('#payNowForm').serializeArray(),
+	//$('#payRentForm').submit(function(){
+	$('#pendingTenantProfile').on('click','#payRentSubmit_btn',function(evt){	//attaching "change" event to dynamic html elements	
+	//$('#payRentSubmit_btn').click(function() {
+	//$('payRentName').submit(function() {
+		//$('#payRentSubmit_btn').attr('disabled', true);
+		var values = $('#payRentFormId1').serializeArray(),
 		
 		data = {};
 		$.each(values, function(index, item) {
@@ -859,11 +865,11 @@ $('#modal1').on('modalDisplayEvent',function(e, tenantKey, firstName,surname){
 		}); 
 		var dataStringJson = JSON.stringify(data);
 		$.ajax({
-			url:'/paynow',
+			url:'/payRent',
 			type:'POST',
 			data: dataStringJson,
 			success:function(resp){
-				alert(resp.payNowSuccessNotice);
+				alert(resp.payRentSuccessNotice);
 				window.location.replace("../");				
 			}
 		});				
@@ -871,62 +877,29 @@ $('#modal1').on('modalDisplayEvent',function(e, tenantKey, firstName,surname){
 	});	
 	
 	
-	$('#clearedTenantProfile').on('click','#payNowSubmit_btn',function(evt){	//attaching "change" event to dynamic html elements	
-		var values = $('#payNowForm').serializeArray(),		
+	$('#clearedTenantProfile').on('click','#payRentSubmit_btn',function(evt){	//attaching "change" event to dynamic html elements	
+		var values = $('#payRentFormId1').serializeArray(),		
 		data = {};
 		$.each(values, function(index, item) {
 			data[item.name] = item.value;
 		}); 
 		var dataStringJson = JSON.stringify(data);
 		$.ajax({
-			url:'/paynow',
+			url:'/payRent',
 			type:'POST',
 			data: dataStringJson,
 			success:function(resp){
-				alert(resp.payNowSuccessNotice);
+				alert(resp.payRentSuccessNotice);
 				window.location.replace("../");				
 			}
 		});				
 		return false;
 	});	
 
-	// $('td.editClass a').click(function(){
-		// alert("edit me");	
-		// return false;		
-	// });
-	
-
-	
-
-//CSS style
-
-	
-
-	
-
-	
-	//tenant activities hover description
-	$('.tenantActivityClass').mousemove(function(e){
-		var hovertext = $(this).attr('hovertext');
-		$('#tenantActivityHoverDiv').text(hovertext).show();
-		$('#tenantActivityHoverDiv').css('top',e.clientY+10).css('left',e.clientX+10);
-	}).mouseout(function(){
-		$('#tenantActivityHoverDiv').hide();	
-	});
-	
 
 
 	
-	//payment history hover description
-	$('.paymentHistoryClass').mousemove(function(e) { 
-		var hovertext = $(this).attr('hovertext');
-		$('#paymentHistoryHoverDiv').text(hovertext).show();
-		$('#paymentHistoryHoverDiv').css('top', e.clientY+10).css('left',e.clientX+10);
-	
-	}).mouseout(function(){ 
-		$('#paymentHistoryHoverDiv').hide();
-	});
-	
+
 	/**
 	 * @param [{"name": "Joe", "age": 36}, {"name": "Nick", "age": 12}]
 	 */
@@ -1269,10 +1242,10 @@ $('#modal1').on('modalDisplayEvent',function(e, tenantKey, firstName,surname){
 	
 	
 	
-	//function payNowForm(tenantKey,tenant_data){
-	function payNowForm(tenantKey,firstName,surname) {
+	//function payRentForm(tenantKey,tenant_data){
+	function payRentForm(tenantKey,firstName,surname) {
 		
-		var jqForm = $('<form class="well form-inline" id="payNowForm" onsubmit="return false;"></form>');
+		var jqForm = $('<form class="well form-inline" id="payRentFormId" onsubmit="return false;"></form>');
 		//$.each(tenant_data,function(item){
 			jqForm.append(
 				
@@ -1295,7 +1268,7 @@ $('#modal1').on('modalDisplayEvent',function(e, tenantKey, firstName,surname){
 				+ '</div>'
 	
 				+ '<div>'		
-				+ '<input type="submit" name="payNowName" class="payNowSubmitButton" id="payNowSubmit_btn" value="Submit"/>'
+				+ '<input type="submit" name="payRentName" class="payRentSubmitButton" id="payRentSubmit_btn" value="Submit"/>'
 				+ '<input type="reset" value="Reset"/>'
 				+ '</br>'
 				//+ '<a href="/">Main Page</a>'
@@ -1345,9 +1318,9 @@ $('#modal1').on('modalDisplayEvent',function(e, tenantKey, firstName,surname){
 				+ '<div><label for="tenant_rentUnpaid">Unpaid Rent: </label>'
 				+ data_json[item].unpaidRent
 				+ '</div>'
-				//+ '<div><a href="/paynow">Pay Now</a></div>'
-				// + '<div class=payNowClass>'
-				// + '<a id = "payNowBtnId1" href="#" data-tenant-key='
+				//+ '<div><a href="/payRent">Pay Now</a></div>'
+				// + '<div class=payRentClass>'
+				// + '<a id = "payRentBtnId1" href="#" data-tenant-key='
 				// + tenantKey + ' data-tenant-firstname='
 				// + data_json[item].firstName + ' data-tenant-surname='
 				// + data_json[item].surname + ' >Pay Now</a>'
@@ -1359,7 +1332,7 @@ $('#modal1').on('modalDisplayEvent',function(e, tenantKey, firstName,surname){
 				+ data_json[item].surname
 				+ '>Check Out</button></br>'
 				+ '</div>'
-				+ '<div id="checkoutPayNowId"></div>'
+				+ '<div id="checkoutpayRentId"></div>'
 		
 		);
 		

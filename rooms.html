@@ -72,51 +72,23 @@
 	
 		<div class="container">	
 
-		
 			<!--modal -->
-			<div class="modal" id="myModal" style="display: none;">
-				<div class="modal-header">
+			<div class="modal hide" id="modal1"><!-- note the use of "hide" class -->
+			  <div class="modal-header">
 				<button class="close" data-dismiss="modal">×</button>
 				<h3>Modal header</h3>
-				</div>
-				<div class="modal-body">
-				<div id="anyId"></div>
-				<p>One fine body…</p>
-					<form class="form-horizontal">  
-						<fieldset>  
-							<legend>Controls Bootstrap supports</legend>  
-							  <div class="control-group">  
-								<label class="control-label" for="input01">Focused Input</label>  
-								<div class="controls">  
-								  <input type="text" class="input-xlarge" id="input01">  
-								  <p class="help-block">In addition to freeform text, any HTML5 text-based input appears like so.</p>  
-								</div>  
-							  </div>  
-							  <div class="control-group">  
-								<label class="control-label" for="input01">Read only Input</label>  
-								<div class="controls">  
-								  <input type="text" class="input-xlarge" id="input01" readonly="true">  
-								  <p class="help-block">In addition to freeform text, any HTML5 text-based input appears like so.</p>  
-								</div>  
-							  </div>  
-							  <div class="form-actions">  
-								<button type="submit" class="btn btn-primary" disabled>Save changes (disabled button)</button>  
-								<button class="btn">Cancel</button>  
-							  </div>   
-						</fieldset>  
-					</form> 
-				</div>
-				<div class="modal-footer">
-				<a href="#" class="btn" data-dismiss="modal">Close</a>
-				<a href="#" class="btn btn-success">Save Changes</a>
-				</div>
-			</div><!--ends modal -->
+			  </div>
+			  <div class="modal-body">				
+				<div id="displayHereId"></div>
+			  </div>
+			  <div class="modal-footer">
+				<a href="#" class="btn" data-dismiss="modal">Close</a><!-- note the use of "data-dismiss" -->
+				<a href="#" class="btn btn-primary">Save changes</a>
+			  </div>
+			</div>
+			<!--ends modal -->
 
-
-
-
-
-		
+	
 			<div class="row">			
 				<div class="span12">	
 					<div>			
@@ -151,7 +123,7 @@
 										 Vacant
 										 {% endif %}
 									</td>																		
-									<td class="tenantProfileClass" >
+									<td class="tenantNameClass" >
 										{% if room.tenant %}										
 											<a href="#" rel="popover" data-content="click to get  {{ room.tenant.firstName }} {{ room.tenant.surname }}'s profile" data-original-title="Remainder:" data-tenant-key="{{ room.tenant.key}}" >{{ room.tenant.firstName }} {{ room.tenant.surname }}</a>
 										{% else %}
