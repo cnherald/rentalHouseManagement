@@ -634,17 +634,34 @@ $('#modal1').on('modalDisplayEvent',function(e, tenantKey, firstName,surname){
 	$('h3').text("Pay Rent Form");
 	$('#displayHereId').html(payRentForm(tenantKey,firstName,surname));
 });
-	
-$('#payRentSubmitId').on('click', function(e){
+
+
+
+$('#payRentSubmit_btn').submit(function(){
+	alert("pay rent form submit button clicked");
+
+});
+
+
+
+//$('#payRentSubmitId').on('click', function(e){
+$('#payRentSubmitId').click(function(){
 	alert("you pay");
-	//$('#displayHereId')
-	$('#payRentFormId').submit();
+	//e.preventDefault();
+	$('#displayHereId.payRentFormClass').submit(function(){
 	
+	alert("hhhhhhh");
+	
+	});
+	//$('#payRentFormId').submit();
 });	
 
-$('#payRentFormId').on('submit', function(){
-	var values = $(this).serializeArray(),data = {};
+$('#payRentFormId1').on('submit', function(){
+	//alert("yesssssss");
+	var values = $(this).serializeArray(),
+	data = {};
 	alert("these are " + values);
+	alert('yes you will pay');
 	$.each(values, function(index, item) {
 		data[item.name] = item.value;
 	}); 
@@ -1245,7 +1262,7 @@ $('#payRentFormId').on('submit', function(){
 	//function payRentForm(tenantKey,tenant_data){
 	function payRentForm(tenantKey,firstName,surname) {
 		
-		var jqForm = $('<form class="well form-inline" id="payRentFormId" onsubmit="return false;"></form>');
+		var jqForm = $('<form class="payRentFormClass" id="payRentFormId" onsubmit="return false;"></form>');
 		//$.each(tenant_data,function(item){
 			jqForm.append(
 				
