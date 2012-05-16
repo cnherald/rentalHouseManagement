@@ -654,13 +654,17 @@ $('#payRentSu').bind('click',function(){
 	});
 });	
 
-$('.modalSubmitBtn').bind("click",function(){
-	alert("jjjjjjj");
-	$('#displayHereId .payRentFormClass').submit();
+
+
+$('.modalSubmitBtn').click(function(e){
+	e.preventDefault();
+	alert("jjjjjppppjj");
+	$('#displayHereId .payRentFormClass').trigger('submit');
 	return false;
 });
 
-	$('#displayHereId .payRentFormClass').submit(function(){
+	$('#displayHereId .payRentFormClass').on('submit',function(e){
+		e.preventDefault();
 		alert("you pay what??" );
 	});
 
