@@ -639,11 +639,12 @@ $('#modal1').on('modalDisplayEvent',function(e, tenantKey, firstName,surname){
 
 //$('#payRentSubmitId').on('click', function(e){
 //$('#payRentSubmitId').click(function(){
-$('#payRentSubmitId').bind('click',function(){
-	//alert("you pay");
+$('#payRentSu').bind('click',function(){
+	alert("you pay");
 	//$('.displayClass').find('input.payRentSubmitButton').on('click',function(e){
 	//$('.displayClass').find('input.payRentSubmitButton').click(function(e){
 	$('.payRentFormClass').submit(function(e){
+		alert("you pay ??");
 	var values = $(this).serializeArray(),
 	data = {};
 	$.each(values, function(index, item) {
@@ -651,12 +652,17 @@ $('#payRentSubmitId').bind('click',function(){
 	});
 	alert("you pay what??" + data);
 	});
-
 });	
 
+$('.modalSubmitBtn').bind("click",function(){
+	alert("jjjjjjj");
+	$('#displayHereId .payRentFormClass').submit();
+	return false;
+});
 
-
-
+	$('#displayHereId .payRentFormClass').submit(function(){
+		alert("you pay what??" );
+	});
 
 $('#payRentFormId').bind('payRentFormSubmitEvent',function(e){
 		alert("payRentFormSubmitEvent");
