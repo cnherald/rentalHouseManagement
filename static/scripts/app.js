@@ -635,13 +635,7 @@ $('#modal1').on('modalDisplayEvent',function(e, tenantKey, firstName,surname){
 	$('#displayHereId').html(payRentForm(tenantKey,firstName,surname));
 });
 
-
-
-
 //$('#displayHereId').on('click','#payRentSubmit_btn',function(evt){
-
-
-
 
 //$('#payRentSubmitId').on('click', function(e){
 //$('#payRentSubmitId').click(function(){
