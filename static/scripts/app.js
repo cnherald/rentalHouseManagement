@@ -615,25 +615,45 @@ $('#modal1').bind('tenantActivityFormEvent', function(e, tenantActivityData){
 			$('#tenantOrRoomProfile').hide();
 			return false;
 	});
+
 	
 	
 //display pay rent form on bootstrap modal
 	$('td.payRentClass a').click(function () {
+	
 	$('#modal1').modal('show');
 	var tenantKey = $(this).data('tenant-key');
 	var firstName = $(this).data('tenant-firstname');
 	var surname = $(this).data('tenant-surname');
-
+	//alert("you clicked payRentClass" + surname);
 	$('#modal1').trigger("modalDisplayEvent", [ tenantKey, firstName,surname]);		
 	
 	
 });
+
 
 //$('#modal1').bind('myCustomEvent',function(e, roomProfileData){ //both "on" and "bind" are working here
 $('#modal1').on('modalDisplayEvent',function(e, tenantKey, firstName,surname){
 	$('h3').text("Pay Rent Form");
 	$('#displayHereId').html(payRentForm(tenantKey,firstName,surname));
 });
+
+$('#modal1  .modalSubmitBtn').click(function(){
+	alert("you click modal's submit button");
+	
+	$('#modal1 .payRentFormClass').submit();
+
+
+	//$('#deleteConfirmation').modal('hide');
+});
+
+$('#modal1 .payRentFormClass').on('submit',function(){
+	alert("you bind submit buttonnnnnnnnnnnnn");
+	//$('#deleteConfirmation').modal('hide');
+
+});
+
+
 
 //$('#displayHereId').on('click','#payRentSubmit_btn',function(evt){
 
@@ -656,7 +676,7 @@ $('#payRentSu').bind('click',function(){
 
 
 
-$('.modalSubmitBtn').click(function(e){
+$('.modalSubmitBtn1').click(function(e){
 	e.preventDefault();
 	alert("jjjjjppppjj");
 	$('#displayHereId .payRentFormClass').trigger('submit');

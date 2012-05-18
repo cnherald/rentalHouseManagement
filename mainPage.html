@@ -65,10 +65,23 @@
     </div>    
     <div class="modal-body">        
         <p>Are you sure you want to delete this report?  This action cannot be undone.</p>
+		<form class="payRentFormClass" id="payRentFormId" onsubmit="return false;">
+			<div>
+				<input type="hidden" name="tenant_key" value="{{ tenant.key }}" />
+			</div>
+			<div>
+				<label for="tenant_rent">Paid Amount: </label>
+				<input id="tenant_rent" type="number" name="paidAmount" />
+			</div>
+			<div>
+				<label for="payment_payDate">Pay Date: </label>
+				<input id="payment_payDate" type="date" name="payDate" placeholder="Year-Month-Day"/>
+			</div>
+		</form>
     </div>  
     <div class="modal-footer">
-     <a href="#" class="btn btn-danger">Delete</a>
-       <a href="#" class="btn">Cancel</a>
+      <a href="#" class="submit-btn btn btn-primary">Pay Now</a>
+      <a href="#" class="btn">Cancel</a>
     </div>
 </div> 
 	
@@ -86,7 +99,7 @@
 			</div>
 			<div class="modal-footer">
 			<a href="#" class="btn" data-dismiss="modal">Close</a>
-			<a href="#" id="payRentSubmitId" class="btn btn-success modalSubmitBtn">Pay Now</a>
+			<a href="#" id="payRentSubmitId" class="modalSubmitBtn btn btn-success">Pay Now</a>
 			</div>
 		</div><!--ends modal -->
 
@@ -174,6 +187,7 @@
 								<td class="payRentClass">
 									<!--<a href="#" rel="popover" data-content="click to pay the rent right now" data-original-title="Remainder:" data-tenant-key={{ tenant.key }} data-tenant-firstname={{ tenant.firstName }} data-tenant-surname={{tenant.surname}} data-tenant-state="pending">Pay Now</a>--> 
 									<a href="#" rel="popover" data-content="click to pay the rent right now" data-original-title="Remainder:" data-tenant-key="{{ tenant.key }}" data-tenant-firstname="{{ tenant.firstName }}" data-tenant-surname="{{tenant.surname}}">Pay Now</a>
+									
 								</td>
 							</tr>
 						{% endfor %}
