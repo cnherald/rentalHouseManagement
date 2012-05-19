@@ -657,9 +657,10 @@ $('.payRentFormClass').on('submit',function(){
 		data[item.name] = item.value;
 	});
 	var dataStringJson = JSON.stringify(data);	
+	alert("you get " + dataStringJson);
 	$('#modal1').modal('hide');
 	$.ajax({
-		url:'/payRent',
+		url:'payRent',
 		type:'POST',
 		data: dataStringJson,
 		success:function(resp){

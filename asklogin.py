@@ -288,7 +288,7 @@ class PayRentHandler(webapp.RequestHandler):
             payment.put()
             tenant.put()'''
             tenant.createPayRentActivityRecord(payAmount)
-            response = {'payNowSuccessNotice':'Congratulations, you have paid the rent!'}
+            response = {'payRentSuccessNotice':'Congratulations, you have paid the rent!'}
             json_response= simplejson.dumps(response)
             return self.response.out.write(json_response)
 
