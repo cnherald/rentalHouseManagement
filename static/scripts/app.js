@@ -638,71 +638,26 @@ $('#modal1').on('modalDisplayEvent',function(e, tenantKey, firstName,surname){
 	$('#displayHereId').html(payRentForm(tenantKey,firstName,surname));
 });
 
-$('#modal1  .modalSubmitBtn').click(function(){
+$('#modal1 .modalSubmitBtn').click(function(){
 	alert("you click modal's submit button");
+	//$('#modal1').trigger('submitPayRentFormEvent');
+	//$('#modal1 .payRentFormClass').submit();
+	//$('#modal1 #payRentFormId').submit();
+	//$('#payRentFormId').submit();
+	$('.payRentFormClass').submit();
+	//$('#deleteConfirmation').modal('hide');
 	
-	$('#modal1 .payRentFormClass').submit();
-
-
-	//$('#deleteConfirmation').modal('hide');
 });
 
-$('#modal1 .payRentFormClass').on('submit',function(){
-	alert("you bind submit buttonnnnnnnnnnnnn");
-	//$('#deleteConfirmation').modal('hide');
-
-});
-
-
-
-//$('#displayHereId').on('click','#payRentSubmit_btn',function(evt){
-
-//$('#payRentSubmitId').on('click', function(e){
-//$('#payRentSubmitId').click(function(){
-$('#payRentSu').bind('click',function(){
-	alert("you pay");
-	//$('.displayClass').find('input.payRentSubmitButton').on('click',function(e){
-	//$('.displayClass').find('input.payRentSubmitButton').click(function(e){
-	$('.payRentFormClass').submit(function(e){
-		alert("you pay ??");
-	var values = $(this).serializeArray(),
-	data = {};
+//$('#payRentFormId').on('submit', function(){ //call on payRentFormId also works 
+$('.payRentFormClass').on('submit',function(){
+	var values = $('#modal1 .payRentFormClass').serializeArray(),
+	data = {};	
 	$.each(values, function(index, item) {
 		data[item.name] = item.value;
 	});
-	alert("you pay what??" + data);
-	});
-});	
-
-
-
-$('.modalSubmitBtn1').click(function(e){
-	e.preventDefault();
-	alert("jjjjjppppjj");
-	$('#displayHereId .payRentFormClass').trigger('submit');
-	return false;
-});
-
-	$('#displayHereId .payRentFormClass').on('submit',function(e){
-		e.preventDefault();
-		alert("you pay what??" );
-	});
-
-$('#payRentFormId').bind('payRentFormSubmitEvent',function(e){
-		alert("payRentFormSubmitEvent");
-});
-
-
-$('#payRentFormId1').on('submit', function(){
-	//alert("yesssssss");
-	var values = $(this).serializeArray(),
-	data = {};
-	alert("these are " + values);
-	alert('yes you will pay');
-	$.each(values, function(index, item) {
-		data[item.name] = item.value;
-	}); 
-	var dataStringJson = JSON.stringify(data);
+	var dataStringJson = JSON.stringify(data);	
+	$('#modal1').modal('hide');
 	$.ajax({
 		url:'/payRent',
 		type:'POST',
@@ -713,8 +668,8 @@ $('#payRentFormId1').on('submit', function(){
 		}
 	});				
 	return false;
-
 });
+
 	
 	//toggling the tenant's payment history
 	$('td.paymentHistoryClass1 a').toggle(function() {
