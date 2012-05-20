@@ -8,15 +8,6 @@ $(function () {
 //$('#example2').modal({show:false});
 //$('#example2').modal('show');
 
-$('#myModal11111').bind('show',function(){
-		var tenantKey = $(this).data('tenant-key');
-		var firstName = $(this).data('tenant-firstname');
-		var surname = $(this).data('tenant-surname');
-
-	//$('#anyId').html("<p>This is the one<p>").show();
-	$('anyId').html(payRentForm(tenantKey,firstName,surname)).show();
-});
-
 
 
 $('#someOtherId').popover(); 
@@ -650,7 +641,8 @@ $('#modal1 .modalSubmitBtn').click(function(){
 });
 
 //$('#payRentFormId').on('submit', function(){ //call on payRentFormId also works 
-$('.payRentFormClass').on('submit',function(){
+$('.payRentFormClass').on('submit',function(){ 
+	
 	var values = $('#modal1 .payRentFormClass').serializeArray(),
 	data = {};	
 	$.each(values, function(index, item) {
@@ -659,16 +651,19 @@ $('.payRentFormClass').on('submit',function(){
 	var dataStringJson = JSON.stringify(data);	
 	alert("you get " + dataStringJson);
 	$('#modal1').modal('hide');
+	console.trace();
 	$.ajax({
 		url:'payRent',
 		type:'POST',
 		data: dataStringJson,
 		success:function(resp){
+			//alert("heeeee");
 			alert(resp.payRentSuccessNotice);
 			window.location.replace("../");				
 		}
-	});				
-	return false;
+	});			
+	preventDefault();
+	//return false;
 });
 
 	
@@ -1278,8 +1273,6 @@ $('.payRentFormClass').on('submit',function(){
 				+ '</div>'
 	
 				+ '<div>'		
-				+ '<input type="submit" name="payRentName" class="payRentSubmitButton" id="payRentSubmit_btn" value="Submit"/>'
-				+ '<input type="reset" value="Reset"/>'
 				+ '</br>'
 				//+ '<a href="/">Main Page</a>'
 				+ '</div>'
