@@ -56,34 +56,34 @@
     <div class="container">
 	
 	
-	<a class="btn btn-danger" data-toggle="modal" data-target="#deleteConfirmation" href="#deleteConfirmation">Delete Report</a>
-	<div class="modal hide fade" id="deleteConfirmation">    
-    <div class="modal-header">
-        <a class="close" data-dismiss="modal">×</a>
-        <h3>
-            Confirm report deletion</h3>        
-    </div>    
-    <div class="modal-body">        
-        <p>Are you sure you want to delete this report?  This action cannot be undone.</p>
-		<form class="payRentFormClass" id="payRentFormId" onsubmit="return false;">
-			<div>
-				<input type="hidden" name="tenant_key" value="{{ tenant.key }}" />
+		<a class="btn btn-danger" data-toggle="modal" data-target="#deleteConfirmation" href="#deleteConfirmation">Delete Report</a>
+		<div class="modal hide fade" id="deleteConfirmation">    
+			<div class="modal-header">
+				<a class="close" data-dismiss="modal">×</a>
+				<h3>
+					Confirm report deletion</h3>        
+			</div>    
+			<div class="modal-body">        
+				<p>Are you sure you want to delete this report?  This action cannot be undone.</p>
+				<form class="payRentFormClass" id="payRentFormId" onsubmit="return false;">
+					<div>
+						<input type="hidden" name="tenant_key" value="{{ tenant.key }}" />
+					</div>
+					<div>
+						<label for="tenant_rent">Paid Amount: </label>
+						<input id="tenant_rent" type="number" name="paidAmount" />
+					</div>
+					<div>
+						<label for="payment_payDate">Pay Date: </label>
+						<input id="payment_payDate" type="date" name="payDate" placeholder="Year-Month-Day"/>
+					</div>
+				</form>
+			</div>  
+			<div class="modal-footer">
+			  <a href="#" class="submit-btn btn btn-primary">Pay Now</a>
+			  <a href="#" class="btn">Cancel</a>
 			</div>
-			<div>
-				<label for="tenant_rent">Paid Amount: </label>
-				<input id="tenant_rent" type="number" name="paidAmount" />
-			</div>
-			<div>
-				<label for="payment_payDate">Pay Date: </label>
-				<input id="payment_payDate" type="date" name="payDate" placeholder="Year-Month-Day"/>
-			</div>
-		</form>
-    </div>  
-    <div class="modal-footer">
-      <a href="#" class="submit-btn btn btn-primary">Pay Now</a>
-      <a href="#" class="btn">Cancel</a>
-    </div>
-</div> 
+		</div> 
 	
 	
 	
@@ -251,7 +251,35 @@
 				<p><a class="btn-primary btn-large" data-toggle="modal" href="#myModal1" data-backdrop="static" >Launch Modal</a></p>
 			</div>
 		</div><!-- end row 5-->
-
+		
+		<div class="row">
+			<div class="span12">
+				 <form  id="commentForm" >
+					 <fieldset>
+					   <legend>A simple comment form with submit validation and default messages</legend>
+					   <p>
+						 <label>Name</label>
+						 <em>*</em><input  name="name"  class="required"/>
+					   </p>
+					   <p>
+						 <label >E-Mail</label>
+						 <em>*</em><input name="email" class="required" />
+					   </p>
+					   <p>
+						 <label >URL</label>
+						 <em>  </em><input id="curl" name="url" size="25"  class="url" value="" />
+					   </p>
+					   <p>
+						 <label>Your comment</label>
+						 <em>*</em><textarea id="ccomment" name="comment" class="required"></textarea>
+					   </p>
+					   <p>
+						 <input class="submit" type="submit" value="Submit"/>
+					   </p>
+					 </fieldset>
+				</form>
+			</div>			
+		</div><!-- end row 6-->
 
 		<a href="#" id="someOtherId" class="btn btn-danger" rel="popover" data-content="do something?" data-original-title="Remainder:" >Some Other Button</a> 
 
@@ -280,6 +308,7 @@
     <script src="js/bootstrap-carousel.js"></script>
     <script src="js/bootstrap-typeahead.js"></script>-->
 			<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.0/jquery.min.js"></script>
+			<script type="text/javascript" src="http://jzaefferer.github.com/jquery-validation/jquery.validate.js"></script>
 			<script type="text/javascript" src="/scripts/app.js"></script>
 			<script src="scripts/bootstrap-modal.js"></script> 
 			<script src="scripts/bootstrap-tooltip.js"></script> 

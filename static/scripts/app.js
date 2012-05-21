@@ -610,7 +610,7 @@ $('#modal1').bind('tenantActivityFormEvent', function(e, tenantActivityData){
 	
 	
 //display pay rent form on bootstrap modal
-	$('td.payRentClass a').click(function () {
+	$('td.payRentClass a').click(function (e) {
 	
 	$('#modal1').modal('show');
 	var tenantKey = $(this).data('tenant-key');
@@ -619,7 +619,7 @@ $('#modal1').bind('tenantActivityFormEvent', function(e, tenantActivityData){
 	//alert("you clicked payRentClass" + surname);
 	$('#modal1').trigger("modalDisplayEvent", [ tenantKey, firstName,surname]);		
 	
-	
+	e.preventDefault();
 });
 
 
@@ -627,6 +627,7 @@ $('#modal1').bind('tenantActivityFormEvent', function(e, tenantActivityData){
 $('#modal1').on('modalDisplayEvent',function(e, tenantKey, firstName,surname){
 	$('h3').text("Pay Rent Form");
 	$('#displayHereId').html(payRentForm(tenantKey,firstName,surname));
+	e.preventDefault();
 });
 
 $('#modal1 .modalSubmitBtn').click(function(){
@@ -642,7 +643,7 @@ $('#modal1 .modalSubmitBtn').click(function(){
 
 //$('#payRentFormId').on('submit', function(){ //call on payRentFormId also works 
 $('.payRentFormClass').on('submit',function(){ 
-	
+
 	var values = $('#modal1 .payRentFormClass').serializeArray(),
 	data = {};	
 	$.each(values, function(index, item) {
@@ -666,7 +667,12 @@ $('.payRentFormClass').on('submit',function(){
 	//return false;
 });
 
+	//validate pay rent form
+	//$("#payRentFormId").validate();
+	$('#modal1 #payRentFormId').validate();
 	
+$("#commentForm").validate();
+
 	//toggling the tenant's payment history
 	$('td.paymentHistoryClass1 a').toggle(function() {
 	
@@ -1262,14 +1268,16 @@ $('.payRentFormClass').on('submit',function(){
 				
 				+ '<div>'
 				+ '<label for="payAmount">Paid Amount: </label>'
-				+ '<input id="pay_Amount" type="number" name="payAmount" class="span2" placeholder="the amount you want to pay..."/>'
-				+ '<label class="error" for="payAmount" id="payAmount_error">Please type in the amount you want to pay.</label>'
+				+ '<em>*</em><input id="pay_Amount" type="number" name="payAmount" class="required" placeholder="the amount you want to pay..."/>'
+				//+ '<label class="error" for="payAmount" id="payAmount_error">Please type in the amount you want to pay.</label>'
 				+ '</div>'
 				
 				+ '<div>'
 				+ '<label for="payDate">Pay Date: </label>'
-				+ '<input id="pay_Date" type="date" name="payDate" placeholder="Year-Month-Day" class="span2"/>'
-				+ '<label class="error" for="payDate" id="payDate_error">This field is required.</label>'
+				//+ '<em>*</em><input id="pay_Date" type="date" name="payDate" placeholder="Year-Month-Day" class="required"/>'
+				//+ '<em>*</em><input value="2011-12-01" class="validate[required,custom[date]]" type="text" name="payDate" id="pay_Date" />'
+				+ '<em>*</em><input  name="name"  class="required"/>'
+				//+ '<label class="error" for="payDate" id="payDate_error">This field is required.</label>'
 				+ '</div>'
 	
 				+ '<div>'		
