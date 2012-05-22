@@ -630,20 +630,25 @@ $('#modal1').on('modalDisplayEvent',function(e, tenantKey, firstName,surname){
 	e.preventDefault();
 });
 
+
+
 $('#modal1 .modalSubmitBtn').click(function(){
 	alert("you click modal's submit button");
+
 	//$('#modal1').trigger('submitPayRentFormEvent');
 	//$('#modal1 .payRentFormClass').submit();
 	//$('#modal1 #payRentFormId').submit();
 	//$('#payRentFormId').submit();
 	$('.payRentFormClass').submit();
+
 	//$('#deleteConfirmation').modal('hide');
 	
 });
 
 //$('#payRentFormId').on('submit', function(){ //call on payRentFormId also works 
 $('.payRentFormClass').on('submit',function(){ 
-
+	//$("#payRentFormId").validate();
+	//$('#payRentFormSubmitBtnId').click();
 	var values = $('#modal1 .payRentFormClass').serializeArray(),
 	data = {};	
 	$.each(values, function(index, item) {
@@ -651,7 +656,7 @@ $('.payRentFormClass').on('submit',function(){
 	});
 	var dataStringJson = JSON.stringify(data);	
 	alert("you get " + dataStringJson);
-	$('#modal1').modal('hide');
+	//$('#modal1').modal('hide');
 	console.trace();
 	$.ajax({
 		url:'payRent',
@@ -667,11 +672,14 @@ $('.payRentFormClass').on('submit',function(){
 	//return false;
 });
 
+
+
 	//validate pay rent form
-	//$("#payRentFormId").validate();
-	$('#modal1 #payRentFormId').validate();
+	$("#displayHereId #payRentFormId").validate();
+	//$('#payRentFormId').validate();
 	
 $("#commentForm").validate();
+$("#commentForm1").validate();
 
 	//toggling the tenant's payment history
 	$('td.paymentHistoryClass1 a').toggle(function() {
@@ -1273,22 +1281,25 @@ $("#commentForm").validate();
 				+ '</div>'
 				
 				+ '<div>'
-				+ '<label for="payDate">Pay Date: </label>'
+				//+ '<label for="payDate">Pay Date: </label>'
 				//+ '<em>*</em><input id="pay_Date" type="date" name="payDate" placeholder="Year-Month-Day" class="required"/>'
 				//+ '<em>*</em><input value="2011-12-01" class="validate[required,custom[date]]" type="text" name="payDate" id="pay_Date" />'
+				+ '<label>Name</label>'
 				+ '<em>*</em><input  name="name"  class="required"/>'
 				//+ '<label class="error" for="payDate" id="payDate_error">This field is required.</label>'
 				+ '</div>'
-	
+				+ ' <p><input  id="payRentFormSubmitBtnId" class="submit" type="submit" value="Submit"/></p>'
 				+ '<div>'		
 				+ '</br>'
 				//+ '<a href="/">Main Page</a>'
 				+ '</div>'
 				);
 		//});
-		//$('body').append(jqForm);
+		$('body').append(jqForm);
 		//$('body').append('<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.0/jquery.min.js"></script>');
 		//$('body').append('<script type="text/javascript" src="/scripts/app.js"></script>');
+		$('body').append('<script type="text/javascript" src="http://jzaefferer.github.com/jquery-validation/jquery.validate.js"></script>');
+		
 		return jqForm;
 	}
 	

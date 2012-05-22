@@ -95,6 +95,29 @@
 			<h3>Modal header</h3>
 			</div>
 			<div class="modal-body">
+				<form  id="commentForm" >		
+					
+						 <label>Name</label>
+						 <em>*</em><input  name="name"  class="required"/>
+					 
+					   <p>
+						 <label >E-Mail</label>
+						 <em>*</em><input name="email" class="required" />
+					   </p>
+					   <p>
+						 <label >URL</label>
+						 <em>  </em><input id="curl" name="url" size="25"  class="url" value="" />
+					   </p>
+					   <p>
+						 <label>Your comment</label>
+						 <em>*</em><textarea id="ccomment" name="comment" class="required"></textarea>
+					   </p>
+					   <p>
+						 <input class="submit" type="submit" value="Submit"/>
+					   </p>
+					
+				</form>
+			
 			<div class="displayClass" id="displayHereId"></div>
 			</div>
 			<div class="modal-footer">
@@ -254,7 +277,7 @@
 		
 		<div class="row">
 			<div class="span12">
-				 <form  id="commentForm" >
+				 <form  id="commentForm1" >
 					 <fieldset>
 					   <legend>A simple comment form with submit validation and default messages</legend>
 					   <p>
