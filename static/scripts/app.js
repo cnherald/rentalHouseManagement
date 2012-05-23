@@ -640,6 +640,7 @@ $('#modal1 .modalSubmitBtn').click(function(){
 	//$('#modal1 #payRentFormId').submit();
 	//$('#payRentFormId').submit();
 	$('.payRentFormClass').submit();
+	$(".commentFormclass").trigger("validationEvent");
 
 	//$('#deleteConfirmation').modal('hide');
 	
@@ -647,6 +648,8 @@ $('#modal1 .modalSubmitBtn').click(function(){
 
 //$('#payRentFormId').on('submit', function(){ //call on payRentFormId also works 
 $('.payRentFormClass').on('submit',function(){ 
+	alert('you click pay now button');
+	
 	//$("#payRentFormId").validate();
 	//$('#payRentFormSubmitBtnId').click();
 	var values = $('#modal1 .payRentFormClass').serializeArray(),
@@ -672,14 +675,24 @@ $('.payRentFormClass').on('submit',function(){
 	//return false;
 });
 
+$(".commentFormclass").on('validationEvent', function(){
+	alert("yes you click comment form submit button");
+	$("#modal1 .commentFormclass").validate();
+	
+});
 
 
+$(".commentFormclass").submit(function(){
+	alert("you click comment form in modal1");
+});
 	//validate pay rent form
-	$("#displayHereId #payRentFormId").validate();
+	//$("#modal1 .payRentFormClass").validate();
 	//$('#payRentFormId').validate();
 	
-$("#commentForm").validate();
-$("#commentForm1").validate();
+	$(".payRentFormClass").validate();
+
+//$("#commentForm").validate();
+//$("#commentForm1").validate();
 
 	//toggling the tenant's payment history
 	$('td.paymentHistoryClass1 a').toggle(function() {
@@ -1288,7 +1301,7 @@ $("#commentForm1").validate();
 				+ '<em>*</em><input  name="name"  class="required"/>'
 				//+ '<label class="error" for="payDate" id="payDate_error">This field is required.</label>'
 				+ '</div>'
-				+ ' <p><input  id="payRentFormSubmitBtnId" class="submit" type="submit" value="Submit"/></p>'
+				+ '<p><input  id="payRentFormSubmitBtnId" class="submit" type="submit" value="Submit"/></p>'
 				+ '<div>'		
 				+ '</br>'
 				//+ '<a href="/">Main Page</a>'
