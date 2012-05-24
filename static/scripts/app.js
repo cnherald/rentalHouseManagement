@@ -639,17 +639,18 @@ $('#modal1 .modalSubmitBtn').click(function(){
 	//$('#modal1 .payRentFormClass').submit();
 	//$('#modal1 #payRentFormId').submit();
 	//$('#payRentFormId').submit();
+	
+	
+	
 	$('.payRentFormClass').submit();
-	//$(".commentFormclass").trigger("validationEvent");
-	$('.submit').click();
-	//$('#deleteConfirmation').modal('hide');
+	
+	$(".commentFormclass").submit();
 	
 });
- $('.submit').on('submit',function(){
-	alert("you click submit class of the comment form");
-});
+
+
 //$('#payRentFormId').on('submit', function(){ //call on payRentFormId also works 
-$('.payRentFormClass').on('submit',function(){ 
+$('.payRentFormClass1').on('submit',function(){ 
 	alert('you click pay now button');
 	
 	//$("#payRentFormId").validate();
@@ -677,21 +678,14 @@ $('.payRentFormClass').on('submit',function(){
 	//return false;
 });
 
-$(".commentFormclass").on('validationEvent', function(){
-	alert("yes you click comment form submit button");
-	$("#modal1 .commentFormclass").validate();
-	
-});
 
 
-$(".commentFormclass").submit(function(){
-	alert("you click comment form in modal1");
-});
 	//validate pay rent form
 	//$("#modal1 .payRentFormClass").validate();
-	//$('#payRentFormId').validate();
 	
-	$(".payRentFormClass").validate();
+	$('#payRentFormId').validate();
+	
+	//$(".payRentFormClass").validate();
 
 //$("#commentForm").validate();
 //$("#commentForm1").validate();
@@ -1279,7 +1273,7 @@ $(".commentFormclass").submit(function(){
 	//function payRentForm(tenantKey,tenant_data){
 	function payRentForm(tenantKey,firstName,surname) {
 		
-		var jqForm = $('<form class="payRentFormClass" id="payRentFormId" onsubmit="return false;"></form>');
+		var jqForm = $('<form class="payRentFormClass" id="payRentFormId" ></form>');
 		//$.each(tenant_data,function(item){
 			jqForm.append(
 				
@@ -1313,7 +1307,8 @@ $(".commentFormclass").submit(function(){
 		$('body').append(jqForm);
 		//$('body').append('<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.0/jquery.min.js"></script>');
 		//$('body').append('<script type="text/javascript" src="/scripts/app.js"></script>');
-		$('body').append('<script type="text/javascript" src="http://jzaefferer.github.com/jquery-validation/jquery.validate.js"></script>');
+		//$('body').append('<script type="text/javascript" src="http://jzaefferer.github.com/jquery-validation/jquery.validate.js"></script>');
+		$('body').append('<script type="text/javascript" src="/scripts/jquery.validate.js"></script>');
 		
 		return jqForm;
 	}
