@@ -640,12 +640,14 @@ $('#modal1 .modalSubmitBtn').click(function(){
 	//$('#modal1 #payRentFormId').submit();
 	//$('#payRentFormId').submit();
 	$('.payRentFormClass').submit();
-	$(".commentFormclass").trigger("validationEvent");
-
+	//$(".commentFormclass").trigger("validationEvent");
+	$('.submit').click();
 	//$('#deleteConfirmation').modal('hide');
 	
 });
-
+ $('.submit').on('submit',function(){
+	alert("you click submit class of the comment form");
+});
 //$('#payRentFormId').on('submit', function(){ //call on payRentFormId also works 
 $('.payRentFormClass').on('submit',function(){ 
 	alert('you click pay now button');
