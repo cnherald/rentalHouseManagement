@@ -643,11 +643,18 @@ $('#modal1 .modalSubmitBtn').click(function(){
 	
 	
 	$('.payRentFormClass').submit();
-	
+
 	$(".commentFormclass").submit();
 	
 });
-
+	$('#displayHereId').on('submit','#payRentFormId',function(evt){
+		alert("here is here");
+		var script = document.createElement('script');
+		script.src = 'http://jzaefferer.github.com/jquery-validation/jquery.validate.js';
+		script.type = 'text/javascript';
+		document.getElementsById('modal1')[0].appendChild(script);
+		$('#payRentFormId').validate();
+	});
 
 //$('#payRentFormId').on('submit', function(){ //call on payRentFormId also works 
 $('.payRentFormClass1').on('submit',function(){ 
