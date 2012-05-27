@@ -640,19 +640,24 @@ $('#modal1 .modalSubmitBtn').click(function(){
 	//$('#modal1 #payRentFormId').submit();
 	//$('#payRentFormId').submit();
 	
-	
-	
-	$('.payRentFormClass').submit();
-
-	$(".commentFormclass").submit();
-	
+	//$('.payRentFormClass').submit();
+	$('#modal1').trigger("payRentFormSubmitEvent");
+	//$(".commentFormclass").submit();
+	return false;
 });
-	$('#displayHereId').on('submit','#payRentFormId',function(evt){
+
+
+	
+
+
+$('#modal1').on('payRentFormSubmitEvent',function(e){
+	//$('#displayHereId').on('submit','#payRentFormId',function(evt){
 		alert("here is here");
-		var script = document.createElement('script');
+		$('#payRentFormId').validate();
+		var script = this.createElement('script');
 		script.src = 'http://jzaefferer.github.com/jquery-validation/jquery.validate.js';
 		script.type = 'text/javascript';
-		document.getElementsById('modal1')[0].appendChild(script);
+		this.getElementsByTagName("form")[0].appendChild(script);
 		$('#payRentFormId').validate();
 	});
 
@@ -690,7 +695,7 @@ $('.payRentFormClass1').on('submit',function(){
 	//validate pay rent form
 	//$("#modal1 .payRentFormClass").validate();
 	
-	$('#payRentFormId').validate();
+	//$('#payRentFormId').validate();
 	
 	//$(".payRentFormClass").validate();
 
@@ -1306,7 +1311,7 @@ $('.payRentFormClass1').on('submit',function(){
 				+ '</div>'
 				+ '<p><input  id="payRentFormSubmitBtnId" class="submit" type="submit" value="Submit"/></p>'
 				+ '<div>'		
-				+ '</br>'
+				//+ '</br>'
 				//+ '<a href="/">Main Page</a>'
 				+ '</div>'
 				);
