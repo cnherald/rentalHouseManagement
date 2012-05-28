@@ -643,7 +643,7 @@ $('#modal1 .modalSubmitBtn').click(function(){
 	//$('.payRentFormClass').submit();
 	$('#modal1').trigger("payRentFormSubmitEvent");
 	//$(".commentFormclass").submit();
-	return false;
+	//return false;
 });
 
 
@@ -654,11 +654,12 @@ $('#modal1').on('payRentFormSubmitEvent',function(e){
 	//$('#displayHereId').on('submit','#payRentFormId',function(evt){
 		alert("here is here");
 		$('#payRentFormId').validate();
-		var script = this.createElement('script');
+		var script = document.createElement("script");
 		script.src = 'http://jzaefferer.github.com/jquery-validation/jquery.validate.js';
 		script.type = 'text/javascript';
-		this.getElementsByTagName("form")[0].appendChild(script);
-		$('#payRentFormId').validate();
+		//document.getElementsByTagName("form")[0].appendChild(script);
+		document.getElementById("modalBodyId").appendChild(script);
+		$('.payRentFormClass').validate();
 	});
 
 //$('#payRentFormId').on('submit', function(){ //call on payRentFormId also works 
