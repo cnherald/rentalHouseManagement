@@ -630,18 +630,20 @@ $('#modal1').on('modalDisplayEvent',function(e, tenantKey, firstName,surname){
 	e.preventDefault();
 });
 
-
+$('#payRentFormId').validate();
 
 $('#modal1 .modalSubmitBtn').click(function(){
 	alert("you click modal's submit button");
 
 	//$('#modal1').trigger('submitPayRentFormEvent');
-	//$('#modal1 .payRentFormClass').submit();
+	$('#modal1 .payRentFormClass').submit();
 	//$('#modal1 #payRentFormId').submit();
 	//$('#payRentFormId').submit();
 	
 	//$('.payRentFormClass').submit();
-	$('#modal1').trigger("payRentFormSubmitEvent");
+	
+	//$('#modal1').trigger("payRentFormSubmitEvent");
+	
 	//$(".commentFormclass").submit();
 	//return false;
 });
@@ -653,17 +655,18 @@ $('#modal1 .modalSubmitBtn').click(function(){
 $('#modal1').on('payRentFormSubmitEvent',function(e){
 	//$('#displayHereId').on('submit','#payRentFormId',function(evt){
 		alert("here is here");
+		console.debug($('#payRentFormId'));
 		$('#payRentFormId').validate();
-		var script = document.createElement("script");
-		script.src = 'http://jzaefferer.github.com/jquery-validation/jquery.validate.js';
-		script.type = 'text/javascript';
+		//var script = document.createElement("script");
+		//script.src = 'http://jzaefferer.github.com/jquery-validation/jquery.validate.js';
+		//script.type = 'text/javascript';
 		//document.getElementsByTagName("form")[0].appendChild(script);
-		document.getElementById("modalBodyId").appendChild(script);
-		$('.payRentFormClass').validate();
+		//document.getElementById("modalBodyId").appendChild(script);
+		//$('.payRentFormClass').validate();
 	});
 
 //$('#payRentFormId').on('submit', function(){ //call on payRentFormId also works 
-$('.payRentFormClass1').on('submit',function(){ 
+$('.payRentFormClass').on('submit',function(){ 
 	alert('you click pay now button');
 	
 	//$("#payRentFormId").validate();
@@ -1286,7 +1289,7 @@ $('.payRentFormClass1').on('submit',function(){
 	//function payRentForm(tenantKey,tenant_data){
 	function payRentForm(tenantKey,firstName,surname) {
 		
-		var jqForm = $('<form class="payRentFormClass" id="payRentFormId" ></form>');
+		var jqForm = $('<form class="payRentFormClass" id="payRentFormId" onsubmit="return false;"></form>');
 		//$.each(tenant_data,function(item){
 			jqForm.append(
 				
