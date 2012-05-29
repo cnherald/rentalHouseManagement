@@ -630,17 +630,18 @@ $('#modal1').on('modalDisplayEvent',function(e, tenantKey, firstName,surname){
 	e.preventDefault();
 });
 
-$('#payRentFormId').validate();
+//$('#payRentFormId').validate();
 
 $('#modal1 .modalSubmitBtn').click(function(){
 	alert("you click modal's submit button");
 
 	//$('#modal1').trigger('submitPayRentFormEvent');
-	$('#modal1 .payRentFormClass').submit();
+	//$('#modal1 .payRentFormClass').submit();
 	//$('#modal1 #payRentFormId').submit();
 	//$('#payRentFormId').submit();
 	
 	//$('.payRentFormClass').submit();
+	$('#payRentFormSubmitBtnId').click();
 	
 	//$('#modal1').trigger("payRentFormSubmitEvent");
 	
@@ -699,7 +700,7 @@ $('.payRentFormClass').on('submit',function(){
 	//validate pay rent form
 	//$("#modal1 .payRentFormClass").validate();
 	
-	//$('#payRentFormId').validate();
+	$('#payRentFormId').validate();
 	
 	//$(".payRentFormClass").validate();
 
@@ -1289,7 +1290,7 @@ $('.payRentFormClass').on('submit',function(){
 	//function payRentForm(tenantKey,tenant_data){
 	function payRentForm(tenantKey,firstName,surname) {
 		
-		var jqForm = $('<form class="payRentFormClass" id="payRentFormId" onsubmit="return false;"></form>');
+		var jqForm = $('<form class="payRentFormClass" id="payRentFormId" ></form>');
 		//$.each(tenant_data,function(item){
 			jqForm.append(
 				
@@ -1320,11 +1321,11 @@ $('.payRentFormClass').on('submit',function(){
 				+ '</div>'
 				);
 		//});
-		$('body').append(jqForm);
+		//$('body').append(jqForm);
 		//$('body').append('<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.0/jquery.min.js"></script>');
 		//$('body').append('<script type="text/javascript" src="/scripts/app.js"></script>');
 		//$('body').append('<script type="text/javascript" src="http://jzaefferer.github.com/jquery-validation/jquery.validate.js"></script>');
-		$('body').append('<script type="text/javascript" src="/scripts/jquery.validate.js"></script>');
+		//$('body').append('<script type="text/javascript" src="/scripts/jquery.validate.js"></script>');
 		
 		return jqForm;
 	}
