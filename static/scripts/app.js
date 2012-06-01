@@ -641,9 +641,9 @@ $('#modal1 .modalSubmitBtn').click(function(){
 	//$('#payRentFormId').submit();
 	
 	//$('.payRentFormClass').submit();
-	$('#payRentFormSubmitBtnId').click();
+	//$('#payRentFormSubmitBtnId').click();
 	
-	//$('#modal1').trigger("payRentFormSubmitEvent");
+	$('#modal1').trigger("payRentFormSubmitEvent");
 	
 	//$(".commentFormclass").submit();
 	//return false;
@@ -651,7 +651,7 @@ $('#modal1 .modalSubmitBtn').click(function(){
 	
 
 
-$('#modal1').on('payRentFormSubmitEvent',function(e){
+$('#modal1').on('payRentFormSubmitEvent1',function(e){
 	//$('#displayHereId').on('submit','#payRentFormId',function(evt){
 		alert("here is here");
 		console.debug($('#payRentFormId'));
@@ -665,7 +665,8 @@ $('#modal1').on('payRentFormSubmitEvent',function(e){
 	});
 
 //$('#payRentFormId').on('submit', function(){ //call on payRentFormId also works 
-$('.payRentFormClass').on('submit',function(){ 
+//$('.payRentFormClass').on('submit',function(){ 
+$('#modal1').on('payRentFormSubmitEvent',function(e){
 	alert('you click pay now button');
 	
 	//$("#payRentFormId").validate();
@@ -689,7 +690,7 @@ $('.payRentFormClass').on('submit',function(){
 			window.location.replace("../");				
 		}
 	});			
-	preventDefault();
+	e.preventDefault();
 	//return false;
 });
 
