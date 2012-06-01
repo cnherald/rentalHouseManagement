@@ -647,8 +647,6 @@ $('#modal1 .modalSubmitBtn').click(function(){
 	//$(".commentFormclass").submit();
 	//return false;
 });
-
-
 	
 
 
@@ -1289,7 +1287,7 @@ $('.payRentFormClass').on('submit',function(){
 	//function payRentForm(tenantKey,tenant_data){
 	function payRentForm(tenantKey,firstName,surname) {
 		
-		var jqForm = $('<form class="payRentFormClass" id="payRentFormId" onsubmit="return false;"></form>');
+		var jqForm = $('<form class="payRentFormClass" id="payRentFormId" ></form>');
 		//$.each(tenant_data,function(item){
 			jqForm.append(
 				
@@ -1320,11 +1318,11 @@ $('.payRentFormClass').on('submit',function(){
 				+ '</div>'
 				);
 		//});
-		$('body').append(jqForm);
+		//$('body').append(jqForm);
 		//$('body').append('<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.0/jquery.min.js"></script>');
 		//$('body').append('<script type="text/javascript" src="/scripts/app.js"></script>');
 		//$('body').append('<script type="text/javascript" src="http://jzaefferer.github.com/jquery-validation/jquery.validate.js"></script>');
-		$('body').append('<script type="text/javascript" src="/scripts/jquery.validate.js"></script>');
+		//$('body').append('<script type="text/javascript" src="/scripts/jquery.validate.js"></script>');
 		
 		return jqForm;
 	}
