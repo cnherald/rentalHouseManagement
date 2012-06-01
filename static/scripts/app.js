@@ -630,17 +630,18 @@ $('#modal1').on('modalDisplayEvent',function(e, tenantKey, firstName,surname){
 	e.preventDefault();
 });
 
-$('#payRentFormId').validate();
+//$('#payRentFormId').validate();
 
 $('#modal1 .modalSubmitBtn').click(function(){
 	alert("you click modal's submit button");
 
 	//$('#modal1').trigger('submitPayRentFormEvent');
-	$('#modal1 .payRentFormClass').submit();
+	//$('#modal1 .payRentFormClass').submit();
 	//$('#modal1 #payRentFormId').submit();
 	//$('#payRentFormId').submit();
 	
 	//$('.payRentFormClass').submit();
+	$('#payRentFormSubmitBtnId').click();
 	
 	//$('#modal1').trigger("payRentFormSubmitEvent");
 	
@@ -697,7 +698,7 @@ $('.payRentFormClass').on('submit',function(){
 	//validate pay rent form
 	//$("#modal1 .payRentFormClass").validate();
 	
-	//$('#payRentFormId').validate();
+	$('#payRentFormId').validate();
 	
 	//$(".payRentFormClass").validate();
 
