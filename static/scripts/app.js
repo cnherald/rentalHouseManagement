@@ -696,8 +696,8 @@ $('.payRentFormClass').on('submit',function(e){
 			window.location.replace("../");				
 		}
 	});			
-	e.preventDefault();
-	//return false;
+	//e.preventDefault();
+	return false;
 });
 
 
