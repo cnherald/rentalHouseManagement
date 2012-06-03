@@ -644,8 +644,8 @@ $('#modal1 .modalSubmitBtn').click(function(){
 	 
 	 $(".payRentFormClass").validate();
 	 
-	 $('#payRentFormSubmitBtnId').trigger('click');
-		//$('.payRentFormClass').submit();
+	//$('#payRentFormSubmitBtnId').trigger('click');
+		$('#payRentFormSubmitBtnId').submit();
 	 
 	 });
 	 
@@ -655,7 +655,7 @@ $('#modal1 .modalSubmitBtn').click(function(){
 	//$('#modal1').trigger("payRentFormSubmitEvent");
 	
 	//$(".commentFormclass").submit(); //works
-	return false;
+	//return false;
 });
 	
 
@@ -674,8 +674,8 @@ $('#modal1').on('payRentFormSubmitEvent1',function(e){
 	});
 
 //$('#payRentFormId').on('submit', function(){ //call on payRentFormId also works 
-//$('.payRentFormClass').on('submit',function(e){ 
-$('#payRentFormSubmitBtnId').on('click',function(e){ 
+$('.payRentFormClass').on('submit',function(){ 
+//$('#payRentFormSubmitBtnId').on('click',function(){ 
 //$('#modal1').on('payRentFormSubmitEvent',function(e){
 	alert('you click pay now button');
 	
@@ -700,7 +700,7 @@ $('#payRentFormSubmitBtnId').on('click',function(e){
 			window.location.replace("../");				
 		}
 	});			
-	//e.preventDefault();
+	//preventDefault();
 	return false;
 });
 
@@ -1299,7 +1299,7 @@ $("#commentForm").validate();
 	//function payRentForm(tenantKey,tenant_data){
 	function payRentForm(tenantKey,firstName,surname) {
 		
-		var jqForm = $('<form class="payRentFormClass" id="payRentFormId" onsubmit="return false;"></form>');
+		var jqForm = $('<form class="payRentFormClass" id="payRentFormId" ></form>');
 		//$.each(tenant_data,function(item){
 			jqForm.append(
 				
