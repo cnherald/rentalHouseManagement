@@ -630,8 +630,8 @@ $('#modal1').on('modalDisplayEvent',function(e, tenantKey, firstName,surname){
 	e.preventDefault();
 });
 
-$('#payRentFormId').validate();
-$(".payRentFormClass").validate();
+//$('#payRentFormId').validate();
+//$(".payRentFormClass").validate();
 
 $('#modal1 .modalSubmitBtn').click(function(){
 	alert("you click modal's submit button");
@@ -641,8 +641,11 @@ $('#modal1 .modalSubmitBtn').click(function(){
 	//$('#modal1 #payRentFormId').submit();
 	//$('#payRentFormId').submit();
 	 $.getScript("scripts/jquery.validate.js",function(){
+	 
 	 $(".payRentFormClass").validate();
-		$('.payRentFormClass').submit();
+	 
+	 $('#payRentFormSubmitBtnId').trigger('click');
+		//$('.payRentFormClass').submit();
 	 
 	 });
 	 
@@ -671,7 +674,8 @@ $('#modal1').on('payRentFormSubmitEvent1',function(e){
 	});
 
 //$('#payRentFormId').on('submit', function(){ //call on payRentFormId also works 
-$('.payRentFormClass').on('submit',function(e){ 
+//$('.payRentFormClass').on('submit',function(e){ 
+$('#payRentFormSubmitBtnId').on('click',function(e){ 
 //$('#modal1').on('payRentFormSubmitEvent',function(e){
 	alert('you click pay now button');
 	
