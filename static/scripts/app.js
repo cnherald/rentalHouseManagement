@@ -639,17 +639,18 @@ $('#modal1 .modalSubmitBtn').click(function(){
 	//$('#modal1').trigger('submitPayRentFormEvent');
 	//$('#modal1 .payRentFormClass').submit();
 	//$('#modal1 #payRentFormId').submit();
-	//$('#payRentFormId').submit();
+	$('#payRentFormId').submit();
+	
 	// $.getScript("scripts/jquery.validate.js",function(){
 	 
 	// $(".payRentFormClass").validate();
 	 
-	$('#payRentFormSubmitBtnId').trigger('click');
+	//$('#payRentFormSubmitBtnId').trigger('click');
 	//	$('#payRentFormSubmitBtnId').submit();
 	 
 	// });
 	 
-	//$('.payRentFormClass').submit();
+	//$('.payRentFormClass').trigger('submit');
 	//$('#payRentFormSubmitBtnId').click();
 	
 	//$('#modal1').trigger("payRentFormSubmitEvent");
@@ -673,9 +674,9 @@ $('#modal1').on('payRentFormSubmitEvent1',function(e){
 		//$('.payRentFormClass').validate();
 	});
 
-//$('#payRentFormId').on('submit', function(){ //call on payRentFormId also works 
+$('#payRentFormId').on('submit', function(){ //call on payRentFormId also works 
 //$('.payRentFormClass').on('submit',function(){ 
-$('#payRentFormSubmitBtnId').on('click',function(){ 
+//$('.payRentFormClass').bind('submit',function(e){ 
 //$('#modal1').on('payRentFormSubmitEvent',function(e){
 	alert('you click pay now button');
 	
@@ -1324,7 +1325,7 @@ $("#commentForm").validate();
 				+ '<em>*</em><input  name="name"  class="required"/>'
 				//+ '<label class="error" for="payDate" id="payDate_error">This field is required.</label>'
 				+ '</div>'
-				+ '<p><input  id="payRentFormSubmitBtnId" class="submit" value="Submit"/></p>'
+				+ '<p><input  id="payRentFormSubmitBtnId" class="submit" type="submit" value="Submit"/></p>'
 				+ '<div>'		
 				//+ '</br>'
 				//+ '<a href="/">Main Page</a>'
