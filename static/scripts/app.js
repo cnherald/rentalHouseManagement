@@ -639,24 +639,31 @@ $('#modal1 .modalSubmitBtn').click(function(){
 	//$('#modal1').trigger('submitPayRentFormEvent');
 	//$('#modal1 .payRentFormClass').submit();
 	//$('#modal1 #payRentFormId').submit();
-	$('#payRentFormId').submit();
+	//$('#payRentFormId').submit();
 	
-	// $.getScript("scripts/jquery.validate.js",function(){
+	$.getScript("scripts/jquery.validate.js",function(){
 	 
-	// $(".payRentFormClass").validate();
+	 $(".payRentFormClass").validate();
 	 
 	//$('#payRentFormSubmitBtnId').trigger('click');
 	//	$('#payRentFormSubmitBtnId').submit();
+	
+
+	
+	
 	 
-	// });
+	 });
 	 
 	//$('.payRentFormClass').trigger('submit');
-	//$('#payRentFormSubmitBtnId').click();
+
 	
 	//$('#modal1').trigger("payRentFormSubmitEvent");
 	
 	//$(".commentFormclass").submit(); //works
 	//return false;
+	
+
+		
 });
 	
 
@@ -674,8 +681,8 @@ $('#modal1').on('payRentFormSubmitEvent1',function(e){
 		//$('.payRentFormClass').validate();
 	});
 
-$('#payRentFormId').on('submit', function(){ //call on payRentFormId also works 
-//$('.payRentFormClass').on('submit',function(){ 
+//$('#payRentFormId').on('submit', function(){ //call on payRentFormId also works 
+$('.payRentFormClass').on('submit',function(){ 
 //$('.payRentFormClass').bind('submit',function(e){ 
 //$('#modal1').on('payRentFormSubmitEvent',function(e){
 	alert('you click pay now button');
@@ -702,8 +709,8 @@ $('#payRentFormId').on('submit', function(){ //call on payRentFormId also works
 			window.location.replace("../");				
 		}
 	});			
-	//preventDefault();
-	return false;
+	preventDefault();
+	//return false;
 });
 
 
@@ -1325,6 +1332,7 @@ $("#commentForm").validate();
 				+ '<em>*</em><input  name="name"  class="required"/>'
 				//+ '<label class="error" for="payDate" id="payDate_error">This field is required.</label>'
 				+ '</div>'
+				//+ '<p><input  id="payRentFormSubmitBtnId" class="submit" type="submit" value="Submit"/></p>'
 				+ '<p><input  id="payRentFormSubmitBtnId" class="submit" type="submit" value="Submit"/></p>'
 				+ '<div>'		
 				//+ '</br>'
