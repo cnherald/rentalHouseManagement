@@ -647,17 +647,41 @@ $('#modal1 .modalSubmitBtn').click(function(){
 	
 	$.getScript("scripts/jquery.validate.js",function(){
 	
-		$("#payRentFormId").validate({
-			success: "valid",
-			submitHandler: function() {
-			alert("Submitted!") 
-			}  
-		});	
+		$("#payRentFormId").validate({	
+			//success: "valid",
+			
+			submitHandler: function(form) {
+			
+					form.submit();
 
-		$('#payRentFormId').submit();
+					//$(this).submit(function () { return false; });
+					//alert("submit!!!");
+					//$('#payRentFormId').submit();
+
+				
+			}			
+		});	
+		
+		// $("#payRentFormId").validate({
+			// success: "valid",
+			// submitHandler: function() { alert("Submitted!") }
+		// })
+		
+		 // $("#payRentFormId").submit(function(e) {
+						// e.preventDefault();
+		// }); 
+		
+
+		//$('#payRentFormId').submit();
+		//$("#payRentFormId").submit(function () { return false; });
 			
  
 	 });
+	 
+	 
+
+	 
+	 
 	 
 	//$('.payRentFormClass').trigger('submit');
 
@@ -688,7 +712,7 @@ $('#modal1').on('payRentFormSubmitEvent1',function(e){
 	});
 
 //$('#payRentFormId').on('submit', function(){ //call on payRentFormId also works 
-$('.payRentFormClass1').on('submit',function(){ 
+$('.payRentFormClass').on('submit',function(){ 
 //$('.payRentFormClass').bind('submit',function(e){ 
 //$('#modal1').on('payRentFormSubmitEvent',function(e){
 	alert('you click pay now button');
