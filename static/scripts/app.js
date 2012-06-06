@@ -642,21 +642,21 @@ $('#modal1 .modalSubmitBtn').click(function(){
 	//$('#modal1 #payRentFormId').submit();
 	//$('#payRentFormId').submit();
 	
+	//$.getScript("scripts/jquery.validate.js");
+	
+	
 	$.getScript("scripts/jquery.validate.js",function(){
-	$("#payRentFormId").validate({
-		success: "valid",
-		submitHandler: function() { 
+	
+		$("#payRentFormId").validate({
+			success: "valid",
+			submitHandler: function() {
 			alert("Submitted!") 
-			
-			
-			
-		}  
-	});
-			$('.payRentFormClass').submit();
+			}  
+		});	
 
+		$('#payRentFormId').submit();
 			
-
-	 
+ 
 	 });
 	 
 	//$('.payRentFormClass').trigger('submit');
@@ -672,10 +672,6 @@ $('#modal1 .modalSubmitBtn').click(function(){
 });
 
 	 
-		$("#payRentFormId").validate({
-			success: "valid",
-			submitHandler: function() { alert("Submitted!") }  
-		})	
 
 
 $('#modal1').on('payRentFormSubmitEvent1',function(e){
