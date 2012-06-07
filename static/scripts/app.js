@@ -646,13 +646,27 @@ $('#modal1 .modalSubmitBtn').click(function(){
 	
 	
 	$.getScript("scripts/jquery.validate.js",function(){
-	
-		$("#payRentFormId").validate({	
-			//success: "valid",
+		//$('#payRentFormId').submit();
+		$("#payRentFormId").validate({
+		
+			// rules: {
+				 // name: "required",
+				 // email: {
+				   // required: true,
+				   // email: true
+				 // }
+			   // },
+		   // messages: {
+			 // name: "Please specify your name",
+			 // email: {
+			   // required: "We need your email address to contact you",
+			   // email: "Your email address must be in the format of name@domain.com"
+			 // }
+		   // },
+			success: "valid",  			
+			submitHandler: function() {
 			
-			submitHandler: function(form) {
-			
-					form.submit();
+					//form.submit();
 
 					//$(this).submit(function () { return false; });
 					//alert("submit!!!");
@@ -662,36 +676,12 @@ $('#modal1 .modalSubmitBtn').click(function(){
 			}			
 		});	
 		
-		// $("#payRentFormId").validate({
-			// success: "valid",
-			// submitHandler: function() { alert("Submitted!") }
-		// })
-		
-		 // $("#payRentFormId").submit(function(e) {
-						// e.preventDefault();
-		// }); 
-		
 
-		//$('#payRentFormId').submit();
-		//$("#payRentFormId").submit(function () { return false; });
-			
- 
+		$('.payRentFormClass').submit();
+		alert("submit?");
+
 	 });
 	 
-	 
-
-	 
-	 
-	 
-	//$('.payRentFormClass').trigger('submit');
-
-	
-	//$('#modal1').trigger("payRentFormSubmitEvent");
-	
-	//$(".commentFormclass").submit(); //works
-	//return false;
-	
-
 		
 });
 
@@ -712,7 +702,7 @@ $('#modal1').on('payRentFormSubmitEvent1',function(e){
 	});
 
 //$('#payRentFormId').on('submit', function(){ //call on payRentFormId also works 
-$('.payRentFormClass').on('submit',function(){ 
+$('.payRentFormClass1').on('submit',function(){ 
 //$('.payRentFormClass').bind('submit',function(e){ 
 //$('#modal1').on('payRentFormSubmitEvent',function(e){
 	alert('you click pay now button');
@@ -1353,6 +1343,13 @@ $("#commentForm").validate();
 				+ '<em>*</em><input id="pay_Amount" type="number" name="payAmount" class="required" placeholder="the amount you want to pay..."/>'
 				//+ '<label class="error" for="payAmount" id="payAmount_error">Please type in the amount you want to pay.</label>'
 				+ '</div>'
+				
+				+ '<div>'
+				+ '<label for="email">Email Address: </label>'
+				+ '<em>*</em><input id="email_address" type="email" name="email" class="required" placeholder="your email address..."/>'
+				//+ '<label class="error" for="payAmount" id="payAmount_error">Please type in the amount you want to pay.</label>'
+				+ '</div>'
+				
 				
 				+ '<div>'
 				//+ '<label for="payDate">Pay Date: </label>'
