@@ -630,7 +630,7 @@ $('#modal1').on('modalDisplayEvent',function(e, tenantKey, firstName,surname){
 	e.preventDefault();
 });
 
-//$('#payRentFormId').validate();
+$('#payRentFormId').validate();
 //$(".payRentFormClass").validate();
 
 
@@ -665,20 +665,21 @@ $('#modal1 .modalSubmitBtn').click(function(){
 		   // },
 			success: "valid",  			
 			submitHandler: function() {
-			
+			//http://stackoverflow.com/questions/4453072/jquery-ui-dialog-with-form-validation-plugin
 					//form.submit();
 
 					//$(this).submit(function () { return false; });
 					//alert("submit!!!");
-					//$('#payRentFormId').submit();
-
+					$('#payRentFormId').submit()
+					//$('.payRentFormClass').submit();
 				
 			}			
 		});	
 		
 
-		$('.payRentFormClass').submit();
-		alert("submit?");
+		//$('.payRentFormClass').submit();
+		//$('#payRentFormId').submit();
+		//alert("submit?");
 
 	 });
 	 
