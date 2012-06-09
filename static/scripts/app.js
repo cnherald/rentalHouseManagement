@@ -630,58 +630,55 @@ $('#modal1').on('modalDisplayEvent',function(e, tenantKey, firstName,surname){
 	e.preventDefault();
 });
 
-$('#payRentFormId').validate();
+//$('#modal1 #payRentFormId').validate();
 //$(".payRentFormClass").validate();
 
 
 $('#modal1 .modalSubmitBtn').click(function(){
-	alert("you click modal's submit button");
-
-	//$('#modal1').trigger('submitPayRentFormEvent');
-	//$('#modal1 .payRentFormClass').submit();
-	//$('#modal1 #payRentFormId').submit();
-	//$('#payRentFormId').submit();
-	
-	//$.getScript("scripts/jquery.validate.js");
-	
-	
-	$.getScript("scripts/jquery.validate.js",function(){
-		//$('#payRentFormId').submit();
-		$("#payRentFormId").validate({
-		
-			// rules: {
-				 // name: "required",
-				 // email: {
-				   // required: true,
-				   // email: true
-				 // }
-			   // },
-		   // messages: {
-			 // name: "Please specify your name",
+	$('#payRentFormId').validate({
+		// rules: {
+			 // name: "required",
 			 // email: {
-			   // required: "We need your email address to contact you",
-			   // email: "Your email address must be in the format of name@domain.com"
+			   // required: true,
+			   // email: true
 			 // }
 		   // },
-			success: "valid",  			
-			submitHandler: function() {
-			//http://stackoverflow.com/questions/4453072/jquery-ui-dialog-with-form-validation-plugin
-					//form.submit();
-
-					//$(this).submit(function () { return false; });
-					//alert("submit!!!");
-					$('#payRentFormId').submit()
-					//$('.payRentFormClass').submit();
-				
-			}			
-		});	
-		
-
-		//$('.payRentFormClass').submit();
-		//$('#payRentFormId').submit();
-		//alert("submit?");
-
-	 });
+	   // messages: {
+		 // name: "Please specify your name",
+		 // email: {
+		   // required: "We need your email address to contact you",
+		   // email: "Your email address must be in the format of name@domain.com"
+		 // }
+	   // },
+		//success: "valid", 
+	
+		submitHandler: function(form) {
+			//alert("submit!!!")
+			var values = $('#modal1 .payRentFormClass').serializeArray(),
+			data = {};	
+			$.each(values, function(index, item) {
+				data[item.name] = item.value;
+			});
+			var dataStringJson = JSON.stringify(data);	
+			alert("you get " + dataStringJson);
+			//$('#modal1').modal('hide');
+			console.trace();
+			$.ajax({
+				url:'payRent',
+				type:'POST',
+				data: dataStringJson,
+				success:function(resp){
+					alert(resp.payRentSuccessNotice);
+					window.location.replace("../");				
+				}
+			});		
+		}
+    });
+	alert("you click modal's submit button");
+	
+	//$.getScript("scripts/jquery.validate.js",function(){
+		$('#payRentFormId').submit();
+	 //});
 	 
 		
 });
