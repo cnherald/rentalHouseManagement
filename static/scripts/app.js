@@ -610,15 +610,13 @@ $('#modal1').bind('tenantActivityFormEvent', function(e, tenantActivityData){
 	
 	
 //display pay rent form on bootstrap modal
-	$('td.payRentClass a').click(function (e) {
-	
+	$('td.payRentClass a').click(function (e) {	
 	$('#modal1').modal('show');
 	var tenantKey = $(this).data('tenant-key');
 	var firstName = $(this).data('tenant-firstname');
 	var surname = $(this).data('tenant-surname');
-	//alert("you clicked payRentClass" + surname);
 	$('#modal1').trigger("modalDisplayEvent", [ tenantKey, firstName,surname]);		
-	
+
 	e.preventDefault();
 });
 
@@ -627,33 +625,34 @@ $('#modal1').bind('tenantActivityFormEvent', function(e, tenantActivityData){
 $('#modal1').on('modalDisplayEvent',function(e, tenantKey, firstName,surname){
 	$('h3').text("Pay Rent Form");
 	$('#displayHereId').html(payRentForm(tenantKey,firstName,surname));
-	e.preventDefault();
-});
-
-//$('#modal1 #payRentFormId').validate();
-//$(".payRentFormClass").validate();
-
-
-$('#modal1 .modalSubmitBtn').click(function(){
-	$('#payRentFormId').validate({
-		// rules: {
-			 // name: "required",
-			 // email: {
-			   // required: true,
-			   // email: true
-			 // }
-		   // },
-	   // messages: {
-		 // name: "Please specify your name",
-		 // email: {
-		   // required: "We need your email address to contact you",
-		   // email: "Your email address must be in the format of name@domain.com"
-		 // }
-	   // },
+		//validate method is called to validate the pay rent form
+		$('#payRentFormId').validate({
+		rules: {
+			 payAmount: {
+				required: true,
+				number: true,
+				minlength: 2 //requires the payment at least 2 digits($10) 
+			},
+			 payDate: {
+				required: true,
+				date: true
+			 
+			 }
+		   },
+	   messages: {
+			payAmount: {
+				required: "Please type in the amount you want to pay",
+				number: "Please type in a positive number",
+				minlength: "please pay at least $10"
+			},
+			payDate: {			
+				required: "please type in the date you want to pay",
+				date: "the pay date should be in the format of date"
+			}
+	   },
 		//success: "valid", 
 	
 		submitHandler: function(form) {
-			//alert("submit!!!")
 			var values = $('#modal1 .payRentFormClass').serializeArray(),
 			data = {};	
 			$.each(values, function(index, item) {
@@ -661,7 +660,7 @@ $('#modal1 .modalSubmitBtn').click(function(){
 			});
 			var dataStringJson = JSON.stringify(data);	
 			alert("you get " + dataStringJson);
-			//$('#modal1').modal('hide');
+			$('#modal1').modal('hide');
 			console.trace();
 			$.ajax({
 				url:'payRent',
@@ -674,7 +673,17 @@ $('#modal1 .modalSubmitBtn').click(function(){
 			});		
 		}
     });
-	alert("you click modal's submit button");
+	
+	e.preventDefault();
+});
+
+//$('#modal1 #payRentFormId').validate();
+//$(".payRentFormClass").validate();
+
+
+$('#modal1 .modalSubmitBtn').click(function(){
+	
+	//alert("you click modal's submit button");
 	
 	//$.getScript("scripts/jquery.validate.js",function(){
 		$('#payRentFormId').submit();
@@ -684,7 +693,6 @@ $('#modal1 .modalSubmitBtn').click(function(){
 });
 
 	 
-
 
 $('#modal1').on('payRentFormSubmitEvent1',function(e){
 	//$('#displayHereId').on('submit','#payRentFormId',function(evt){
@@ -731,17 +739,6 @@ $('.payRentFormClass1').on('submit',function(){
 	//return false;
 });
 
-
-
-	//validate pay rent form
-	//$("#modal1 .payRentFormClass").validate();
-	
-	//$('#payRentFormId').validate();
-	
-//$(".payRentFormClass").validate();
-
-$("#commentForm").validate();
-//$("#commentForm1").validate();
 
 	//toggling the tenant's payment history
 	$('td.paymentHistoryClass1 a').toggle(function() {
@@ -1342,23 +1339,24 @@ $("#commentForm").validate();
 				//+ '<label class="error" for="payAmount" id="payAmount_error">Please type in the amount you want to pay.</label>'
 				+ '</div>'
 				
-				+ '<div>'
-				+ '<label for="email">Email Address: </label>'
-				+ '<em>*</em><input id="email_address" type="email" name="email" class="required" placeholder="your email address..."/>'
+				//+ '<div>'
+				//+ '<label for="email">Email Address: </label>'
+				//+ '<em>*</em><input id="email_address" type="email" name="email" class="required" placeholder="your email address..."/>'
 				//+ '<label class="error" for="payAmount" id="payAmount_error">Please type in the amount you want to pay.</label>'
-				+ '</div>'
+				//+ '</div>'
 				
 				
 				+ '<div>'
-				//+ '<label for="payDate">Pay Date: </label>'
-				//+ '<em>*</em><input id="pay_Date" type="date" name="payDate" placeholder="Year-Month-Day" class="required"/>'
+				+ '<label for="payDate">Pay Date: </label>'
+				+ '<em>*</em><input id="pay_Date" type="date" name="payDate" placeholder="Year-Month-Day" class="required"/>'
 				//+ '<em>*</em><input value="2011-12-01" class="validate[required,custom[date]]" type="text" name="payDate" id="pay_Date" />'
-				+ '<label>Name</label>'
-				+ '<em>*</em><input  name="name"  class="required"/>'
+				//+ '<label>Name</label>'
+				//+ '<em>*</em><input  name="name"  class="required"/>'
 				//+ '<label class="error" for="payDate" id="payDate_error">This field is required.</label>'
 				+ '</div>'
 				//+ '<p><input  id="payRentFormSubmitBtnId" class="submit" type="submit" value="Submit"/></p>'
-				+ '<input  id="payRentFormSubmitBtnId" class="submit" type="submit" value="Submit"/>'
+				//+ '<input  id="payRentFormSubmitBtnId" class="submit" type="submit" value="Submit"/>'
+				//+ '<input  id="payRentFormSubmitBtnId" class="submit" type="hidden" value="Submit"/>'
 				+ '<div>'		
 				//+ '</br>'
 				//+ '<a href="/">Main Page</a>'
