@@ -12,6 +12,7 @@ from models import Payment
 from models import Tenant
 from models import Room
 from models import Activity
+
 #from models import TenantHistory
 
 class MainPage(webapp.RequestHandler):    

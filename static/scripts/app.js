@@ -653,7 +653,7 @@ $('#modal1').on('modalDisplayEvent',function(e, tenantKey, firstName,surname){
 		//success: "valid", 
 	
 		submitHandler: function(form) {
-			var values = $('#modal1 .payRentFormClass').serializeArray(),
+			var values = $('.payRentFormClass').serializeArray(),
 			data = {};	
 			$.each(values, function(index, item) {
 				data[item.name] = item.value;
