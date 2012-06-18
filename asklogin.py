@@ -17,7 +17,7 @@ from models import Activity
 
 class MainPage(webapp.RequestHandler):    
     def get(self):
-        previous_url = self.request.get('previous_url')
+        #previous_url = self.request.get('previous_url')
         tenants = Tenant().getCurrentTenants()              
         clearedTenants = []
         pendingTenants = []      
