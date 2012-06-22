@@ -1091,7 +1091,7 @@ $('.payRentFormClass1').on('submit',function(){
 		var jqForm = $('<form id="tenantRegister" onsubmit="return false;">'
 		+ '<div>'
 		+ '<label for="firstName">First Name: </label>'
-		+ '<input id="firstName" type="text" name="firstName">'
+		+ '<input id="firstName" type="test" name="firstName">'
 		+ '<label class="error" for="firstName" id="firstName_error">This field is required.</label>'
 		+ '</div>'
 		
