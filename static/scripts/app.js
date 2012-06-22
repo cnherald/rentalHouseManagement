@@ -1097,7 +1097,7 @@ $('.payRentFormClass1').on('submit',function(){
 		
 		+ '<div>'
 		+ '<label for="surname">Surname:</label>'
-		+ '<input id="surname" type="test" name="surname">'
+		+ '<input id="surname" type="text" name="surname">'
 		+ '<label class="error" for="surname" id="surname_error">This field is required.</label>'
 		+ '</div>'
 		
