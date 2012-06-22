@@ -28,7 +28,7 @@ class MainPage(webapp.RequestHandler):
                 else:
                     pendingTenants.append(tenant)  
         path = os.path.join(os.path.dirname(__file__), 'mainPage.html')
-        template_values = {'pendingTenants':pendingTenants, 'clearedTenants':clearedTenants,'previous_url':previous_url}
+        template_values = {'pendingTenants':pendingTenants, 'clearedTenants':clearedTenants}
         self.response.out.write(template.render(path, template_values))
 
 class Bootstrapmainpage(webapp.RequestHandler):
